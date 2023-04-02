@@ -1,5 +1,5 @@
 module.exports = {
-	dest: "./dest",
+	dest: "./dist",
 
 	title: "EasyBangumi",
 	description: "Free and open source bangumi(animation) player for Android",
