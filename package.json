@@ -1,0 +1,24 @@
+{
+  "name": "easybangumi.github",
+  "version": "1.0.0",
+  "description": "official website and github profiles for easybangumi app",
+  "scripts": {
+    "docs:dev": "vuepress dev src",
+    "docs:build": "vuepress build docs",
+    "build": "npm run lint && vuepress build src",
+		"lint": "eslint --fix 'src/.vuepress/**/*.{js,vue}' --no-ignore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easybangumiorg/.github.git"
+  },
+  "license": "MPL-2.0",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/easybangumiorg/.github/issues"
+  },
+  "homepage": "https://github.com/easybangumiorg/.github#readme",
+  "devDependencies": {
+    "vuepress": "^1.9.9"
+  }
+}
