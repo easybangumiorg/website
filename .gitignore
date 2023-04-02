@@ -13,7 +13,7 @@ node_modules/
 npm-debug.log
 
 # Compiled site
-/public/
+/dest/
 
 # Ignore Visual Studio Code files
 *.code-workspace
