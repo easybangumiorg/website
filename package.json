@@ -23,7 +23,7 @@
   "dependencies": {
     "marked": "4.2.12",
     "vue": "2.7.14",
-    "vue-moment": "^4.1.0",
+    "vue-moment": "4.1.0",
     "vuex": "3.6.2"
   }
 }
