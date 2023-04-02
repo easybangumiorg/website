@@ -15,6 +15,7 @@ module.exports = {
 		logo: "/icons/logo.ico",
 		repo: "easybangumiorg/easybangumi",
 		docsRepo: "easybangumiorg/.github",
+		docsBranch: 'main',
 		docsDir: "src",
 		smoothScroll: true,
 		searchPlaceholder: "Search...",

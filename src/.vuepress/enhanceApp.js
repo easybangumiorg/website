@@ -1,5 +1,5 @@
-import store from "./store";
-import Vuex from "vuex"
+import store from "./store"
+import VueMoment from "vue-moment"
 
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
@@ -9,5 +9,6 @@ export default ({
   isServer // 当前应用配置是处于 服务端渲染 或 客户端
 }) => {
   // ...做一些其他的应用级别的优化
-  Vue.mixin({ store });
+  Vue.mixin({ store })
+  Vue.use(VueMoment)
 }
