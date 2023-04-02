@@ -7,6 +7,7 @@ meta:
 lang: en-US
 ---
 # Download
+Download the latest stable version of **EasyBangumi** that released <ReleaseDate stable /> or the nightly version that released <ReleaseDate nightly />.
 
 <DownloadButtons/>
 
