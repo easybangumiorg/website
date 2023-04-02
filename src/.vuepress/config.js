@@ -7,7 +7,7 @@ module.exports = {
     head: [
 		["link", { rel: "icon", href: "/favicon.ico" }],
 		["meta", { name: "theme-color", content: "#343D48" }],
-		["meta", { prefix: "og: http://ogp.me/ns#", property: "og:image", content: "https://tachiyomi.org/icons/FAVICON-RAW.png" }],
+		["meta", { prefix: "og: http://ogp.me/ns#", property: "og:image", content: "https://www.easybangumi.org/icons/FAVICON-RAW.png" }],
 		['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
 	],
 
