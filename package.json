@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "official website and github profiles for easybangumi app",
   "scripts": {
-    "docs:dev": "vuepress dev src",
-    "docs:build": "vuepress build docs",
-    "build": "npm run lint && vuepress build src",
-    "lint": "eslint --fix 'src/.vuepress/**/*.{js,vue}' --no-ignore"
+    "serve": "vuepress dev src",
+    "build": "vuepress build src"
   },
   "repository": {
     "type": "git",
