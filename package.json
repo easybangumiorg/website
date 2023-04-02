@@ -17,11 +17,12 @@
   },
   "homepage": "https://github.com/easybangumiorg/.github#readme",
   "devDependencies": {
+    "@types/marked": "^4.0.8",
     "vuepress": "^1.9.9"
   },
   "dependencies": {
-		"vue": "2.7.14",
-    "marked": "^4.3.0",
+    "marked": "4.2.12",
+    "vue": "2.7.14",
     "vuex": "3.6.2"
   }
 }
