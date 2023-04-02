@@ -6,7 +6,7 @@
     "docs:dev": "vuepress dev src",
     "docs:build": "vuepress build docs",
     "build": "npm run lint && vuepress build src",
-		"lint": "eslint --fix 'src/.vuepress/**/*.{js,vue}' --no-ignore"
+    "lint": "eslint --fix 'src/.vuepress/**/*.{js,vue}' --no-ignore"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,10 @@
   "homepage": "https://github.com/easybangumiorg/.github#readme",
   "devDependencies": {
     "vuepress": "^1.9.9"
+  },
+  "dependencies": {
+		"vue": "2.7.14",
+    "marked": "^4.3.0",
+    "vuex": "3.6.2"
   }
 }
