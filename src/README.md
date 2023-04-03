@@ -9,7 +9,7 @@ actionText: Download →
 actionLink: /download/
 features:
   - title: Extensions
-    details: We only have two plugins at the moment, but you can expect them.
+    details: We only have two extensions at the moment, but you can expect them.
   - title: Tracking
     details: Every time you start EasyBangumi, you will automatically get updates from various sources.
   - title: Customization
