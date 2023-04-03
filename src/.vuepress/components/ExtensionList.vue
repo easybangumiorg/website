@@ -21,7 +21,7 @@ export default {
         </h3>
         <div
             v-for="extension in list"
-            :id="extension.pkg.replace('eu.kanade.tachiyomi.extension.', '')"
+            :id="extension.pkg"
             :key="extension.apk"
             class="anchor"
         >
