@@ -25,6 +25,7 @@ module.exports = {
 		nav: [
 			{ text: "Home", link: "/" },
 			{ text: "Download", link: "/download/" },
+			{ text: "Extensions", link: "/extensions/" },
 		],
 	},
 
