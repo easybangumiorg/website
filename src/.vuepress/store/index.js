@@ -18,14 +18,12 @@ export default new Vuex.Store({
     },
     mutations: {
         setStableReleaseData(state, data) {
-            // eslint-disable-next-line no-param-reassign
             state.stable = {
                 updated: new Date().getTime(),
                 data: data,
             };
         },
         setNightlyReleaseData(state, data) {
-            // eslint-disable-next-line no-param-reassign
             state.nightly = {
                 updated: new Date().getTime(),
                 data: data,

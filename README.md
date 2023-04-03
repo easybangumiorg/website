@@ -7,7 +7,7 @@
 
 ## APP Download
 
-<https://www.easybangumi.org/download/>
+<https://easybangumi.org/download/>
 
 下载地址：[https://install.appcenter.ms/users/heyanle/apps/easybangumi/distribution_groups/easybangumi](https://install.appcenter.ms/users/heyanle/apps/easybangumi/distribution_groups/easybangumi)
 
