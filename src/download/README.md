@@ -10,9 +10,8 @@ lang: en-US
 tips: [stars](https://github.com/easybangumiorg/EasyBangumi) can encourage developer to speed up the development of more new features
  
  hope you enjoy this app
-<DownloadButtons/>
 
-<WhatsNew/>
+<DownLoadAndWhatsNew/>
 
 ## App Center
 
