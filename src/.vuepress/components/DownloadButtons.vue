@@ -1,70 +1,54 @@
 <script>
-import {mapState} from 'vuex'
+
 export default {
+    data() {
+        return {
+            tagName: "0.0.0",
+            browserDownloadUrl: "",
+            nightlyTagName: "0.0.0",
+            nightlyBrowserDownloadUrl: "",
+        };
+    },
 
-    computed:{
-        ...mapState(['stable','nightly']),
-        tagName(){
-            return (this.stable.data && this.stable.data.tag_name)||'loading'
-        },
-        nightlyTagName(){
-            return (this.nightly.data && this.nightly.data.tag_name)||'loading'
-        },
-        stableReleaseDate(){
-            return this.getReleaseDateFromRelease(this.stable.data)
-        },
-
-        nightlyReleaseDate(){
-            return this.getReleaseDateFromRelease(this.nightly.data)
+    async mounted() {
+        try {
+            const data = await this.$store.dispatch("getStableReleaseData");
+            this.$data.tagName = data.tag_name;
+            this.$data.browserDownloadUrl = data.assets[0].browser_download_url;
+        } catch (e) {
+            console.error(e);
+        }
+        try {
+            const data = await this.$store.dispatch("getNightlyReleaseData");
+            this.$data.nightlyTagName = data.tag_name.split("-")[1];
+            this.$data.nightlyBrowserDownloadUrl = data.assets[0].browser_download_url;
+        } catch (e) {
+            console.error(e);
         }
     },
 
     methods: {
         downloadStable() {
-            this.downloadApk(this.stable.data)
+            window.location.assign(this.$data.browserDownloadUrl || "https://github.com/easybangumiorg/EasyBangumi/releases/latest");
         },
         downloadNightly() {
-            this.downloadApk(this.nightly.data)
+            window.location.assign(this.$data.nightlyBrowserDownloadUrl || "https://github.com/easybangumiorg/EasyBangumi-nightly/releases/latest");
         },
-        getReleaseDateFromRelease(release){
-            const time = release && release.published_at
-            if(!time){
-                return
-            }
-            return this.$moment(time).fromNow()
-        },
-        downloadApk(release,fallbackUrl){
-            let apkUrl;
-            if (release&&release.assets) {
-                release.assets.some(asset=>{
-                    if (asset.browser_download_url.endsWith('.apk')) {
-                        apkUrl = asset.browser_download_url
-                        return true
-                    }
-                    return false
-                })
-            }
-            location.assign(apkUrl||fallbackUrl)
-        }
     },
 };
 </script>
 
 <template>
     <div id="DownloadButtons">
-        <button class="stable" @click="downloadStable" :disabled="!stable.data">
+        <button class="stable" @click="downloadStable">
             <span>Stable</span>
-            <br>
-            <span class="downloadTag">{{ tagName }}</span> 
-            <br>
-            <span class="downloadTag" v-if="stableReleaseDate">{{ stableReleaseDate }}</span>
+            <br />
+            <span class="downloadTag">{{ $data.tagName }}</span>
         </button>
-        <button class="nightly" @click="downloadNightly" :disabled="!nightly.data">
+        <button class="nightly" @click="downloadNightly">
             <span>Nightly</span>
-            <br>
-            <span class="downloadTag">{{ nightlyTagName }}</span>
-            <br>
-            <span class="downloadTag" v-if="nightlyReleaseDate">{{ nightlyReleaseDate }}</span>
+            <br />
+            <span class="downloadTag">{{ $data.nightlyTagName }}</span>
         </button>
         <span class="versionNotice">
             Requires
