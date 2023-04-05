@@ -6,10 +6,11 @@ meta:
     content: Download, Official, Android app, Bangumi, APK
 lang: en-US
 ---
+
 # Download From Github
 tips: [stars](https://github.com/easybangumiorg/EasyBangumi) can encourage developer to speed up the development of more new features
  
- hope you enjoy this app
+hope you enjoy this app
 
 <DownLoadAndWhatsNew/>
 
