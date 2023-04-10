@@ -29,4 +29,21 @@ module.exports = {
 		],
 	},
 
+	plugins: [
+		[
+		//   "vuepress-plugin-comment1",
+		//   {
+		// 	type: "Giscus",
+		// 	comment: true,
+
+		// 	repo: "easybangumiorg/website",
+		// 	repoId: "R_kgDOJE1kyA",
+		// 	category: "群组",
+		// 	categoryId: "DIC_kwDOJE1kyM4CUnkA",
+		// 	mapping: "pathname",
+		// 	reactionsEnabled: true,
+		// 	inputPosition: "top"
+		//   },
+		],
+	  ]
   }
