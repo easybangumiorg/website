@@ -25,3 +25,6 @@ theme_eject/
 # vuepress2
 .cache
 .temp
+
+# yarn
+yarn-error.log
