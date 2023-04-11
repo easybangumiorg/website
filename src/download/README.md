@@ -5,17 +5,24 @@ meta:
   - name: keywords
     content: Download, Official, Android app, Bangumi, APK
 lang: en-US
+sidebar: false
 ---
 
-# Download From Github
+# Download
 
 tips: [stars](https://github.com/easybangumiorg/EasyBangumi) can encourage developer to speed up the development of more new features.
 
 hope you enjoy this app.
 
-<DownloadsWrapper/>
+## From Github
 
-## App Center
+Download the latest stable version of **EasyBangumi** that released <ReleaseDate stable /> or the preview version that released <ReleaseDate nightly />.
+
+<DownloadButtons/>
+
+<WhatsNew/>
+
+## From App Center
 
 You can also download EasyBangumi and get updates at:
 

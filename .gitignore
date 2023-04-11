@@ -21,3 +21,7 @@ npm-debug.log
 
 # Ignore theme_eject folder
 theme_eject/
+
+# vuepress2
+.cache
+.temp
