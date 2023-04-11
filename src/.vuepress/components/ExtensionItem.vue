@@ -20,6 +20,7 @@ export default {
     },
 };
 </script>
+
 <template>
     <div v-if="item" class="extension">
         <a :href="`#${pkgId}`" class="header-anchor" aria-hidden="true" @click.stop>#</a>
@@ -34,7 +35,7 @@ export default {
             </div>
         </div>
         <a :href="apkUrl" class="extension-download" title="Download APK" download>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                 class="bi bi-cloud-arrow-down" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M7.646 10.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 9.293V5.5a.5.5 0 0 0-1 0v3.793L6.354 8.146a.5.5 0 1 0-.708.708l2 2z" />
@@ -45,65 +46,111 @@ export default {
         </a>
     </div>
 </template>
-<style lang="stylus">
-.extension
-        align-items center
-        display flex
-        padding 0.4em 1.5em
-        .header-anchor
-            padding-left 0.2em
-            padding-right 0.2em
-            font-size 1.4em
-            opacity 0
-        &:hover .header-anchor
-            opacity 1
-        .extension-icon
-            margin-right 0.5em
-        .extension-text
-            flex 1
-            .upper
-                font-weight: 600
-                .badge
-                    font-weight: 400
-                    margin-left 8px
-            .lower
-                color #6c757d
-                font-family monospace
-                font-size 0.9rem
-        .extension-download
-            margin-right 0.5em
-            padding-left 1rem
-            padding-right 1rem
-            padding-top .5rem
-            padding-bottom .5rem
-            font-weight 700
-            border-radius 4px
-            color white
-            background-color $accentColor
-            border 1px solid $accentColor
-            .material-icons
-                color white
-                max-width 18px
-            &:hover
-                background-color white
-                color $accentColor
-                text-decoration none
-                .material-icons
-                    color $accentColor
-        @media (max-width 767px)
-            padding 0.4em 0em
-            .extension-text .lower,
-            .extension-download span
-                display none
-    @media (max-width 767px)
-        .extension
-            border 1px solid $borderColor
-            border-radius 8px
-            .extension-download
-                background-color $accentColor
-    &:target
-        .extension
-            background-color $containerBackground
-            border-radius 8px
-            transition 500ms background-color
+
+<style lang="scss">
+.extension {
+    align-items: center;
+    display: flex;
+    padding: 0.4em 1.5em;
+
+    .header-anchor {
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+        font-size: 1.4em;
+        opacity: 0;
+    }
+
+    &:hover .header-anchor {
+        opacity: 1;
+    }
+
+    .extension-icon {
+        margin-right: 0.5em;
+    }
+
+    .extension-text {
+        flex: 1;
+
+        .upper {
+            font-weight: 600;
+
+            .badge {
+                font-weight: 400;
+                margin-left: 8px;
+            }
+        }
+
+        .lower {
+            color: #6c757d;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    }
+
+    .extension-download {
+        margin-right: 0.5em;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: .5rem;
+        padding-bottom: .3rem;
+        border-radius: 4px;
+        color: white;
+        background-color: #3eaf7c;
+        border: 1px solid #3eaf7c;
+        font-weight: 700;
+        line-height: 24px;
+
+        span {
+            float: right;
+        }
+
+        &:hover {
+            background-color: white;
+            color: #3eaf7c;
+            text-decoration: none;
+
+            .material-icons {
+                color: #3eaf7c;
+            }
+        }
+
+        svg {
+            max-width: 18px;
+            padding-right: 0.5rem;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding: 0.4em 0em;
+
+        .extension-text .lower,
+        .extension-download span {
+            display: none;
+        }
+
+        .extension-text .lower,
+        .extension-download svg {
+            padding-right: 0rem;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .extension {
+            border: 1px solid #3eaf7c;
+            border-radius: 8px;
+
+            .extension-download {
+                background-color: #3eaf7c;
+            }
+        }
+    }
+
+    &:target {
+        .extension {
+            background-color: #3eaf7c;
+            border-radius: 8px;
+            transition: 500ms background-color;
+        }
+    }
+}
 </style>

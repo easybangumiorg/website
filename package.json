@@ -1,5 +1,5 @@
 {
-  "name": "easybangumi.github",
+  "name": "easybangumi.org",
   "version": "1.0.0",
   "description": "official website and github profiles for easybangumi app",
   "scripts": {
@@ -17,13 +17,12 @@
   },
   "homepage": "https://github.com/easybangumiorg/.github#readme",
   "devDependencies": {
-    "@types/marked": "^4.0.8",
-    "vuepress": "^1.9.9"
+    "@vuepress/plugin-register-components": "^2.0.0-beta.61",
+    "vuepress": "^2.0.0-beta.61"
   },
   "dependencies": {
-    "marked": "4.2.12",
-    "vue": "2.7.14",
-    "vue-moment": "4.1.0",
-    "vuex": "3.6.2"
+    "marked": "^4.3.0",
+    "moment": "^2.29.4",
+    "vuex": "^4.0.2"
   }
 }

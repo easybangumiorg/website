@@ -1,49 +1,63 @@
-module.exports = {
-	dest: "./dist",
+import { defineUserConfig, defaultTheme } from 'vuepress'
+import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+import { getDirname, path } from '@vuepress/utils'
 
-	title: "EasyBangumi",
-	description: "Free and open source bangumi(animation) player for Android",
+const __dirname = getDirname(import.meta.url)
 
+export default defineUserConfig({
+    // 文件目录
+    dest: "./dist",
+    temp: "./.temp",
+    cache: "./.cache",
+
+    // 元信息
+    title: "EasyBangumi",
+    description: "Free and open source bangumi(animation) player for Android",
+
+    // 头部设置
     head: [
-		["link", { rel: "icon", href: "/favicon.ico" }],
-		["meta", { name: "theme-color", content: "#343D48" }],
-		["meta", { prefix: "og: http://ogp.me/ns#", property: "og:image", content: "https://easybangumi.org/icons/FAVICON-RAW.png" }],
-		['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-	],
+        ["link", { rel: "icon", href: "/favicon.ico" }],
+        ["meta", { name: "theme-color", content: "#343D48" }],
+        ["meta", { prefix: "og: http://ogp.me/ns#", property: "og:image", content: "https://easybangumi.org/icons/FAVICON-RAW.png" }],
+        ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
+    ],
 
-	themeConfig: {
-		logo: "/icons/logo.ico",
-		repo: "easybangumiorg/easybangumi",
-		docsRepo: "easybangumiorg/website",
-		docsBranch: 'main',
-		docsDir: "src",
-		smoothScroll: true,
-		searchPlaceholder: "Search...",
-		editLinks: true,
-		editLinkText: "Help us improve this page",
-		lastUpdated: "Last updated",
-		nav: [
-			{ text: "Home", link: "/" },
-			{ text: "Download", link: "/download/" },
-			{ text: "Extensions", link: "/extensions/" },
-		],
-	},
+    // 主题配置
+    theme: defaultTheme({
+        // 基本配置
+        logo: "/icons/logo.ico",
+        repo: "easybangumiorg/easybangumi",
 
-	plugins: [
-		[
-		//   "vuepress-plugin-comment1",
-		//   {
-		// 	type: "Giscus",
-		// 	comment: true,
+        // 协同编辑
+        editLinks: true,
+        editLinkText: "Help us improve this page",
+        docsRepo: "easybangumiorg/website",
+        docsBranch: 'main',
+        docsDir: "src",
 
-		// 	repo: "easybangumiorg/website",
-		// 	repoId: "R_kgDOJE1kyA",
-		// 	category: "群组",
-		// 	categoryId: "DIC_kwDOJE1kyM4CUnkA",
-		// 	mapping: "pathname",
-		// 	reactionsEnabled: true,
-		// 	inputPosition: "top"
-		//   },
-		],
-	  ]
-  }
+        // 上次编辑
+        lastUpdated: true,
+        lastUpdatedText: "Last updated",
+
+        // 合作者
+        contributors: true,
+        contributorsText: "Contributors",
+
+        // 导航栏
+        navbar: [
+            { text: "Home", link: "/" },
+            { text: "Download", link: "/download/" },
+            { text: "Extensions", link: "/extensions/" },
+        ],
+
+        // 侧边栏
+        sidebar: 'auto',
+    }),
+
+    // 插件
+    plugins: [
+        registerComponentsPlugin({
+            componentsDir: path.resolve(__dirname, './components'),
+        }),
+    ],
+})

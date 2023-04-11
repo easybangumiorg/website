@@ -5,8 +5,14 @@ meta:
     content: Download, Official, Android app, Bangumi
 lang: en-US
 heroImage: /icons/FAVICON-RAW.png
-actionText: Download →
-actionLink: /download/
+heroHeight: 140
+actions:
+  - text: Download →
+    link: /download/
+    type: primary
+  - text: Extensions
+    link: /extensions/
+    type: secondary
 features:
   - title: Extensions
     details: We only have two extensions at the moment, but you can expect them.
