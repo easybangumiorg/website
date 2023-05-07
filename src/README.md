@@ -2,7 +2,7 @@
 home: true
 meta:
   - name: keywords
-    content: Download, Official, Android app, Bangumi
+    content: 纯纯看番, EasyBangumi, Official, Android app
 lang: en-US
 heroImage: /icons/FAVICON-RAW.png
 heroHeight: 140
