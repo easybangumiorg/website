@@ -60,6 +60,7 @@ export default defineUserConfig({
         registerComponentsPlugin({
             componentsDir: path.resolve(__dirname, './components'),
         }),
+        // 以下插件在开发模式启用可能会导致页面无法预览
         googleAnalyticsPlugin({
             id: "G-9CF0ZQPB32"
         }),

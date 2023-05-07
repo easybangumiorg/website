@@ -3,7 +3,7 @@ title: Download
 description: Download links for the latest versions of EasyBangumi.
 meta:
   - name: keywords
-    content: Download, Official, Android app, Bangumi, APK
+    content: 纯纯看番, Download, Official, Android app
 lang: en-US
 sidebar: false
 ---
