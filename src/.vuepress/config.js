@@ -11,10 +11,6 @@ export default defineUserConfig({
     temp: "./.temp",
     cache: "./.cache",
 
-    // 元信息
-    title: "EasyBangumi",
-    description: "Free and open source bangumi(animation) player for Android",
-
     // 头部设置
     head: [
         ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -28,39 +24,93 @@ export default defineUserConfig({
         // 基本配置
         logo: "/icons/logo.ico",
         repo: "easybangumiorg/easybangumi",
-
         // 协同编辑
         editLinks: true,
-        editLinkText: "Help us improve this page",
         docsRepo: "easybangumiorg/website",
         docsBranch: 'main',
         docsDir: "src",
-
         // 上次编辑
         lastUpdated: true,
-        lastUpdatedText: "Last updated",
-
         // 合作者
         contributors: true,
-        contributorsText: "Contributors",
-
-        // 导航栏
-        navbar: [
-            { text: "Home", link: "/" },
-            { text: "Download", link: "/download/" },
-            { text: "Extensions", link: "/extensions/" },
-        ],
-
         // 侧边栏
         sidebar: 'auto',
+
+        // 主题多语言设置
+        locales: {
+            '/': { // 英语设置
+                selectLanguageName: 'English',
+                editLinkText: "Help us improve this page",
+                lastUpdatedText: "Last updated",
+                contributorsText: "Contributors",
+
+                navbar: [
+                    { text: "Home", link: "/" },
+                    {
+                        text: "Download", 
+                        children: [
+                            { text: "EasyBangumi", link: "/download/" },
+                            { text: "Extensions", link: "/extensions/" },
+                        ]
+                    },
+                ],
+            },
+            '/zh/': { // 简体中文设置
+                selectLanguageName: '简体中文',
+                editLinkText: "帮助我们改善此页",
+                lastUpdatedText: "上次更新",
+                contributorsText: "贡献者",
+
+                navbar: [
+                    { text: "主页", link: "/zh/" },
+                    {
+                        text: "下载", 
+                        children: [
+                            { text: "本体", link: "/zh/download/" },
+                            { text: "扩展", link: "/zh/extensions/" },
+                        ]
+                    },
+                ],
+
+                // 简体中文的额外设置
+                selectLanguageText: '选择语言',
+                selectLanguageAriaLabel: '选择语言',
+                tip: '提示',
+                warning: '注意',
+                danger: '警告',
+                notFound: [
+                    '这里什么都没有',
+                    '我们怎么到这来了？',
+                    '这是一个 404 页面',
+                    '看起来我们进入了错误的链接',
+                ],
+                backToHome: '返回首页',
+                openInNewWindow: '在新窗口打开',
+                toggleColorMode: '切换颜色模式',
+                toggleSidebar: '切换侧边栏',
+            },
+        },
     }),
+
+    // 多语言支持
+    locales: {
+        '/': {
+            lang: 'en-US',
+            title: 'EasyBangumi',
+            description: 'Free and open source bangumi(animation) player for Android',
+        },
+        '/zh/': {
+            lang: 'zh-CN',
+            title: '纯纯看番',
+            description: '免费且开源的安卓动漫播放器',
+        },
+    },
 
     // 插件
     plugins: [
         registerComponentsPlugin({
             componentsDir: path.resolve(__dirname, './components'),
         }),
-        // 以下插件在开发模式启用可能会导致页面无法预览
         googleAnalyticsPlugin({
             id: "G-9CF0ZQPB32"
         }),
