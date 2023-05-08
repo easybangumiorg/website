@@ -59,7 +59,7 @@ export default {
 }
 
 .guide {
-	background-color: #f0f4f8;
+	background-color: #f0f4f83b;
 	border-radius: 0.4rem;
 	margin: 1rem 0;
 	padding: 0.1rem 1.5rem;
