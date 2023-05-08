@@ -32,7 +32,7 @@ export default defineUserConfig({
         // 上次编辑
         lastUpdated: true,
         // 合作者
-        contributors: true,
+        contributors: false,
         // 侧边栏
         sidebar: 'auto',
 
@@ -47,7 +47,7 @@ export default defineUserConfig({
                 navbar: [
                     { text: "Home", link: "/" },
                     {
-                        text: "Download", 
+                        text: "Download",
                         children: [
                             { text: "EasyBangumi", link: "/download/" },
                             { text: "Extensions", link: "/extensions/" },
@@ -64,13 +64,56 @@ export default defineUserConfig({
                 navbar: [
                     { text: "主页", link: "/zh/" },
                     {
-                        text: "下载", 
+                        text: "下载",
                         children: [
                             { text: "本体", link: "/zh/download/" },
                             { text: "扩展", link: "/zh/extensions/" },
                         ]
                     },
+                    {
+                        text: "帮助",
+                        children: [
+                            {
+                                text: "常见问题",
+                                link: "/zh/guide/faq/",
+                            },
+                            {
+                                text: "用户指南",
+                                children: [
+                                    '/zh/guide/user-manual/getting-started.md'
+                                ],
+                            },
+                            {
+                                text: "开发",
+                                children: [
+                                    '/zh/guide/contribution/'
+                                ],
+                            },
+                        ]
+                    },
                 ],
+
+                sidebar: {
+                    '/zh/guide/': [
+                        {
+                            text: '常见问题',
+                            collapsible: true,
+                            link: '/zh/guide/faq/',
+                        }, {
+                            text: '用户指南',
+                            collapsible: true,
+                            children: [
+                                '/zh/guide/user-manual/getting-started.md',
+                            ],
+                        }, {
+                            text: '开发',
+                            collapsible: true,
+                            children: [
+                                '/zh/guide/contribution/',
+                            ],
+                        },
+                    ],
+                },
 
                 // 简体中文的额外设置
                 selectLanguageText: '选择语言',
