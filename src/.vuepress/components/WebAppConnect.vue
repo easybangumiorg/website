@@ -1,5 +1,50 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+
+const data = ref({
+    path: "",
+    secret: "",
+})
+
+onMounted(() => {
+    if ('secret' in route.query && typeof (route.query.secret) === 'string') {
+        data.value.secret = route.query.secret
+    }
+    if ('path' in route.query && typeof (route.query.path) === 'string') {
+        data.value.path = route.query.path
+        connect()
+    }
+})
+
+function connect() {
+    console.log("connect")
+    if (!data.value.path) {
+        alert("请输入服务器地址，比如: 'http://192.168.1.2/'")
+        return
+    }
+    fetch(data.value.path)
+        .then(res => res.json())
+        .then(res => {
+            if ('server' in res
+                && typeof (res.server) === 'string'
+                && res.server == 'easyBangumi-distributive'
+            ) {
+                console.log(res)
+                alert(`连接成功！${res.data.version}`)
+                return
+            }
+
+            console.log(res)
+            alert("这不是一个分布式纯纯看番服务器")
+        })
+        .catch(err => {
+            console.log(err)
+            alert(err)
+        })
+}
 </script>
 
 <template>
@@ -12,26 +57,24 @@
                 <div class="title">
                     <span>连接你的分布式纯纯看番</span>
                 </div>
-
                 <div class="content">
                     <div class="content-main">
                         <span>地址</span>
-                        <input type="text" />
+                        <input type="text" v-model="data.path" />
                         <span>密钥（可选）</span>
-                        <input type="password" />
+                        <input type="password" v-model="data.secret" />
                     </div>
-
                     <span class="content-footer">
-                        不知道什么是分布式纯纯看番？<a href="">了解详情</a>
+                        不知道什么是分布式纯纯看番？<a href="/zh/webapp/about.html">了解详情</a>
                     </span>
                 </div>
-
                 <div class="footer">
                     <div class="footer-box">
                         <div class="footer-box-item right">
-                            <button class="link-button">下一步</button>
+                            <button class="link-button" @click="connect">下一步</button>
                         </div>
-                        <div class="footer-box-item"></div>
+                        <div class="footer-box-item">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,13 +87,18 @@ input {
     height: 35px;
     border-radius: 4px;
     border: 1px solid #b7bac0;
-    
+
     outline: none;
     padding: 6px 6px 3px;
     margin-top: 4px;
     margin-bottom: 16px;
 
     font-size: 18px;
+
+    &:focus {
+        box-shadow: 0 0 30px #b1aeae52, 0 0 0 1px #fff, 0 0 0 3px rgba(50, 100, 150, 0.3);
+        outline: none;
+    }
 }
 
 a {
