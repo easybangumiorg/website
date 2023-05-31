@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 const data = ref({
     path: "",
@@ -20,7 +23,6 @@ onMounted(() => {
 })
 
 function connect() {
-    console.log("connect")
     if (!data.value.path) {
         alert("请输入服务器地址，比如: 'http://192.168.1.2/'")
         return
@@ -32,17 +34,23 @@ function connect() {
                 && typeof (res.server) === 'string'
                 && res.server == 'easyBangumi-distributive'
             ) {
-                console.log(res)
-                alert(`连接成功！${res.data.version}`)
+                store.commit('setDistributive', {
+                    path: data.value.path,
+                    isConnect: true,
+                    meta: res.data,
+                    server: res.server,
+                    secret: data.value.secret,
+                })
+
+                router.push("/zh/webapp/source.html")
                 return
             }
 
-            console.log(res)
             alert("这不是一个分布式纯纯看番服务器")
         })
         .catch(err => {
             console.log(err)
-            alert(err)
+            alert("连接错误，请检查路径")
         })
 }
 </script>

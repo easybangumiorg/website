@@ -88,6 +88,19 @@ export default createStore({
                 updated: null,
                 data: null,
             },
+            distributive: {
+                path: null,
+                isConnect: false,
+                meta: null,
+                server: null,
+                secret: null,
+            },
+            source: {
+                list: {},
+                isLoaded: false,
+                choose: null,
+                count: 0
+            }
         }
     },
     mutations: {
@@ -103,6 +116,12 @@ export default createStore({
                 data: data,
             }
         },
+        setDistributive(state, data) {
+            state.distributive = data
+        },
+        setSource(state, data) {
+            state.source = data
+        }
     },
     actions: {
         getStableReleaseData() {
@@ -124,6 +143,45 @@ export default createStore({
             }
 
             return worker.getNightlyData(this, "nightly")
+        },
+        getSourceList() {
+            if (this.state.source.isLoaded) {
+                return this.state.source.list
+            }
+            return fetch(`${this.state.distributive.path}/list`)
+                .then(res => res.json())
+                .then(res => {
+                    let choose = null
+                    let a = 0
+                    for (let i in res.data) {
+                        if (!choose) {
+                            choose = i
+                        }
+                        a += 1
+                    }
+
+                    this.commit('setSource', {
+                        list: res.data,
+                        isLoaded: true,
+                        count: a,
+                        choose
+                    })
+
+                    return res.data
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        },
+        chooseSource(store, source) {
+            if (!source in this.state.source.list) {
+                console.warn("A non-existent source was selected")
+                return
+            }
+            store.commit('setSource', {
+                ...store.state.source,
+                choose: source
+            })
         },
     },
 })
