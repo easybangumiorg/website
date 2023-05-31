@@ -4,6 +4,7 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import SourceButton from './webapp/SourceButton.vue';
 import SourcePanel from './webapp/SourcePanel.vue';
+import SourceContent from './webapp/SourceContent.vue';
 
 const store = useStore()
 const router = useRouter()
@@ -31,7 +32,9 @@ onMounted(async () => {
         <div class="class-bar">
             <SourcePanel class="panel" :source="store.state.source.list[store.state.source.choose]" />
         </div>
-        <div class="content-bar">源二级列表 番剧的具体展示和播放容器</div>
+        <div class="content-bar">
+            <SourceContent />
+        </div>
     </div>
 </template>
 
@@ -67,6 +70,8 @@ onMounted(async () => {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 }
 </style>

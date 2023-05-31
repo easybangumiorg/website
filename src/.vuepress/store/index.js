@@ -100,7 +100,16 @@ export default createStore({
                 isLoaded: false,
                 choose: null,
                 count: 0
-            }
+            },
+            contentStack: [
+                {
+                    type: "blank",
+                    source: "official",
+                    title: "分布式纯纯看番",
+                    text: "此页面仅供链接分布式纯纯看番使用，任何内容均与纯纯看番无关，纯纯看番仅提供相应的接口规范和标准程序实现，并不存储且分发相应的内容。"
+                }
+            ],
+            contentCanBackward: true
         }
     },
     mutations: {
@@ -121,7 +130,27 @@ export default createStore({
         },
         setSource(state, data) {
             state.source = data
-        }
+        },
+        pushContent(state, content) {
+            const last = state.contentStack[state.contentStack.length - 1]
+
+            if (last.type == content.type
+                && last.source == content.source
+                && last.title == content.title) {
+                return
+            }
+
+            state.contentStack.push(content)
+            state.contentCanBackward = true
+        },
+        popContent(state) {
+            if (state.contentStack.length > 1) {
+                state.contentStack.pop()
+            }
+            if (state.contentStack.length == 1) {
+                state.contentCanBackward = false
+            }
+        },
     },
     actions: {
         getStableReleaseData() {
@@ -183,5 +212,16 @@ export default createStore({
                 choose: source
             })
         },
+        openContent(store, content) {
+            store.commit('pushContent', content)
+        },
+        backwardContent(store) {
+            store.commit('popContent')
+        }
     },
+    getters: {
+        content(state) {
+            return state.contentStack[state.contentStack.length - 1]
+        }
+    }
 })
