@@ -38,12 +38,11 @@ function choose() {
     }
 
     button {
-        background-color: rgba(255, 255, 255, 0);
         place-self: center;
         height: 50px;
         width: 50px;
         cursor: pointer;
-        border: 0px solid #dcdfe6;
+        border: 2px solid #dcdfe6;
         border-radius: 25px;
         overflow: hidden;
         padding: 0%;

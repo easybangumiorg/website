@@ -1,6 +1,9 @@
 <script setup>
 import { defineProps, watch, ref, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import SourceItem from './SourceItem.vue';
 
+const store = useStore()
 const props = defineProps(['source'])
 
 const features = ref({
@@ -11,7 +14,11 @@ const features = ref({
 })
 
 const data = ref({
-    version: 'unknown'
+    version: 'unknown',
+    name: '未知源',
+    description: '未知描述',
+    source: '',
+    class: [],
 })
 
 function add_zh_info(msg) {
@@ -23,9 +30,13 @@ function add_zh_info(msg) {
 }
 
 function update() {
+    if (!props.source) return
     features.value.zh_info = ''
+    features.value.basic = false
+    features.value.class = false
+    features.value.search = false
+    data.value.class = []
     props.source.features.split(',').filter(i => {
-        console.log(i)
         switch (i) {
             case 'basic':
                 features.value.basic = true
@@ -45,11 +56,21 @@ function update() {
         return true
     })
     data.value.version = 'v' + props.source.version
+    data.value.name = props.source.name
+    data.value.description = props.source.description
+    data.value.source = props.source.tag
+
+    if (features.value.class)
+        fetch(`${store.state.distributive.path}/source/${data.value.source}/class`)
+            .then(res => res.json())
+            .then(res => {
+                data.value.class = res.data
+            })
+            .catch(err => console.error(err))
 }
 
 onMounted(() => {
     watch(props, () => {
-        console.log("source change")
         update()
     })
 
@@ -60,16 +81,20 @@ onMounted(() => {
 
 <template>
     <div class="panel-wrapper">
-        <div v-if="features.search" class="header">
-            搜索栏
+        <div class="header">
+            <div class="title">
+                <h6>{{ data.name }}</h6>
+                <span>{{ data.description }}</span>
+            </div>
+            <div v-if="features.search" class="search"> 搜索栏占位 </div>
         </div>
 
         <div v-if="features.basic" class="body">
-            {{ props.source }}
+            <SourceItem v-for="d in data.class" type="class" :data="d" />
         </div>
 
         <div v-else class="body">
-
+            <span>源不具备索引能力</span>
         </div>
 
         <div class="footer">
@@ -89,8 +114,31 @@ onMounted(() => {
     flex-direction: column;
 
     .header {
-        height: 48px;
+        height: 54px;
         border-bottom: 1px solid var(--c-border);
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+
+        .title {
+            flex-grow: 1;
+
+            h6 {
+                padding-top: 6px;
+                padding-left: 9px;
+                margin: 0;
+            }
+
+            span {
+                padding-left: 9px;
+                font-size: xx-small;
+                font-weight: lighter;
+            }
+        }
+
+        .search {
+            width: 48px;
+        }
     }
 
     .body {
@@ -111,12 +159,13 @@ onMounted(() => {
 
         .f-l {
             flex-grow: 1;
+            padding-top: 2px;
         }
 
         .f-r {
             text-align: right;
             padding-right: 9px;
-
+            padding-top: 2px;
             color: #3eaf7c;
         }
     }
