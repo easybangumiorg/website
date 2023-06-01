@@ -34,7 +34,7 @@ onMounted(() => {
 <template>
     <div v-if="store.getters.content.type == 'class'">
         <p>{{ store.getters.content.text }}</p>
-        <CardWrapper :animations="data.animations" />
+        <CardWrapper :animations="data.animations" :tname="store.getters.content.title" />
     </div>
 </template>
 
