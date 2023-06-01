@@ -17,7 +17,6 @@ export default defineUserConfig({
         ["meta", { name: "theme-color", content: "#343D48" }],
         ["meta", { prefix: "og: http://ogp.me/ns#", property: "og:image", content: "https://easybangumi.org/icons/FAVICON-RAW.png" }],
         ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-        ['script', { src: 'https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js' }],
     ],
 
     // 主题配置
