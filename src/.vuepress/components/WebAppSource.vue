@@ -18,8 +18,6 @@ onMounted(async () => {
         router.push("/zh/webapp")
     }
     data.value.sourceList = await store.dispatch('getSourceList')
-
-
 })
 
 </script>

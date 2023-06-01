@@ -4,12 +4,12 @@ import { useStore } from 'vuex';
 import Card from './Card.vue'
 
 const store = useStore()
-const props = defineProps(['animations',])
+const props = defineProps(['animations', 'tname'])
 </script>
 
 <template>
     <div class="card-wrapper">
-        <Card v-for="a in props.animations" :info="a" :base-url="store.state.distributive.path"/>
+        <Card v-for="a in props.animations" :info="a" :base-url="store.state.distributive.path" :tname="props.tname" />
     </div>
 </template>
 

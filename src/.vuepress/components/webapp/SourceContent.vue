@@ -1,13 +1,16 @@
 <script setup>
 import { useStore } from 'vuex'
-import { watch, ref, onMounted } from 'vue'
+import { watch, ref, onMounted, computed } from 'vue'
 import ContentClass from './content/ContentClass.vue';
+import ContentPlay from './content/ContentPlay.vue';
 
 const store = useStore()
 
 function backeard() {
     store.dispatch('backwardContent')
 }
+
+const path = computed(() => store.state.source.list[store.getters.content.source].name + " / " + store.getters.content.title)
 
 </script>
 
@@ -24,11 +27,14 @@ function backeard() {
                 <span class="arrow-left"></span>
                 <div class="button-text">&nbsp;返回</div>
             </div>
-            <h4>{{ store.state.source.list[store.getters.content.source].name }} / {{ store.getters.content.title }}</h4>
+            <h4>{{ path }}</h4>
         </div>
         <div class="content-container">
             <div v-if="store.getters.content.type == 'class'">
                 <ContentClass />
+            </div>
+            <div v-if="store.getters.content.type == 'play'">
+                <ContentPlay />
             </div>
         </div>
     </div>

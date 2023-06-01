@@ -1,19 +1,31 @@
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps } from "vue";
+import { useStore } from "vuex";
 
-const props = defineProps(['info', 'baseUrl'])
+const store = useStore();
+const props = defineProps(["info", "baseUrl", "tname"]);
+
+function play() {
+    store.dispatch("openContent", {
+        type: "play",
+        title: props.tname ? props.tname + " / " + props.info.title : props.info.title,
+        text: "",
+        source: props.info.source,
+        tid: props.info.tid,
+        payload: props.info,
+    });
+}
 </script>
 
 <template>
-    <div class="card">
+    <div class="card" @click="play()">
         <div class="img-box">
-            <img :src="props.baseUrl + props.info.coverUrl" :alt="props.info.title">
+            <img :src="props.baseUrl + props.info.coverUrl" :alt="props.info.title" />
         </div>
         <div class="title-box">
             <h5>{{ props.info.title }}</h5>
             <span>{{ props.info.pubdate }}</span>
         </div>
-
     </div>
 </template>
 
@@ -27,6 +39,12 @@ const props = defineProps(['info', 'baseUrl'])
     flex-direction: column;
     cursor: pointer;
 
+    transition: all 0.3s;
+
+    &:hover {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
     .img-box {
         height: 180px;
         overflow: hidden;
@@ -35,8 +53,8 @@ const props = defineProps(['info', 'baseUrl'])
         border-bottom: 1px solid #dcdfe6;
 
         img {
-            width: 100%;
-            height: auto;
+            height: 100%;
+            width: auto;
             object-fit: cover;
             object-position: center;
             position: absolute;

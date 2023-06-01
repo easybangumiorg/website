@@ -1,82 +1,81 @@
 <script setup>
-import { defineProps, watch, ref, onMounted } from 'vue'
-import { useStore } from 'vuex'
-import SourceItem from './SourceItem.vue';
+import { defineProps, watch, ref, onMounted } from "vue";
+import { useStore } from "vuex";
+import SourceItem from "./SourceItem.vue";
 
-const store = useStore()
-const props = defineProps(['source'])
+const store = useStore();
+const props = defineProps(["source"]);
 
 const features = ref({
     zh_info: "",
     basic: false,
     class: false,
-    search: false
-})
+    search: false,
+});
 
 const data = ref({
-    version: 'unknown',
-    name: '未知源',
-    description: '未知描述',
-    source: '',
+    version: "unknown",
+    name: "未知源",
+    description: "未知描述",
+    source: "",
     class: [],
-})
+});
 
 function add_zh_info(msg) {
     if (features.value.zh_info) {
-        features.value.zh_info += `，${msg}`
+        features.value.zh_info += `，${msg}`;
     } else {
-        features.value.zh_info += msg
+        features.value.zh_info += msg;
     }
 }
 
 function update() {
-    if (!props.source) return
-    features.value.zh_info = ''
-    features.value.basic = false
-    features.value.class = false
-    features.value.search = false
-    data.value.class = []
-    props.source.features.split(',').filter(i => {
+    if (!props.source) return;
+    features.value.zh_info = "";
+    features.value.basic = false;
+    features.value.class = false;
+    features.value.search = false;
+    data.value.class = [];
+    props.source.features.split(",").filter((i) => {
         switch (i) {
-            case 'basic':
-                features.value.basic = true
-                add_zh_info("基础")
+            case "basic":
+                features.value.basic = true;
+                add_zh_info("基础");
                 break;
 
-            case 'class':
-                features.value.class = true
-                add_zh_info("分类")
+            case "class":
+                features.value.class = true;
+                add_zh_info("分类");
                 break;
 
-            case 'search':
-                features.value.search = true
-                add_zh_info("搜索")
+            case "search":
+                features.value.search = true;
+                add_zh_info("搜索");
                 break;
         }
-        return true
-    })
-    data.value.version = 'v' + props.source.version
-    data.value.name = props.source.name
-    data.value.description = props.source.description
-    data.value.source = props.source.tag
+        return true;
+    });
+    data.value.version = "v" + props.source.version;
+    data.value.name = props.source.name;
+    data.value.description = props.source.description;
+    data.value.source = props.source.tag;
 
     if (features.value.class)
         fetch(`${store.state.distributive.path}/source/${data.value.source}/class`)
-            .then(res => res.json())
-            .then(res => {
-                data.value.class = res.data
+            .then((res) => res.json())
+            .then((res) => {
+                data.value.class = res.data;
             })
-            .catch(err => console.error(err))
+            .catch((err) => console.error(err));
 }
 
 onMounted(() => {
     watch(props, () => {
-        update()
-    })
+        update();
+    });
 
-    update()
-})
-
+    update();
+});
 </script>
 
 <template>
@@ -86,7 +85,7 @@ onMounted(() => {
                 <h6>{{ data.name }}</h6>
                 <span>{{ data.description }}</span>
             </div>
-            <div v-if="features.search" class="search"> 搜索栏占位 </div>
+            <div v-if="features.search" class="search">搜索栏占位</div>
         </div>
 
         <div v-if="features.basic" class="body">
@@ -98,9 +97,7 @@ onMounted(() => {
         </div>
 
         <div class="footer">
-            <div class="f-l">
-                源能力：{{ features.zh_info }}
-            </div>
+            <div class="f-l">源能力：{{ features.zh_info }}</div>
             <div class="f-r">
                 {{ data.version }}
             </div>
@@ -169,7 +166,5 @@ onMounted(() => {
             color: #3eaf7c;
         }
     }
-
-
 }
 </style>
