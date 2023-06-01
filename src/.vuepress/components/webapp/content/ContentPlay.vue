@@ -1,6 +1,7 @@
 <script setup>
 import { useStore } from "vuex";
 import { watch, ref, onMounted, onBeforeUnmount, computed } from "vue";
+import Artplayer from "artplayer";
 
 const store = useStore();
 const data = ref({
