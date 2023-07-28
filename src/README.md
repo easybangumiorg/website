@@ -20,5 +20,5 @@ features:
     details: Every time you start EasyBangumi, you will automatically get updates from various sources.
   - title: Customization
     details: EasyBangumi has a variety of themes to choose from, and will automatically switch the dark mode according to the system.
-footer: Apache-2.0 Licensed | Copyright © 2018-present EasyBangumi.org
+footer: Apache-2.0 Licensed | Copyright © 2022-present EasyBangumi.org
 ---

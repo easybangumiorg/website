@@ -20,5 +20,5 @@ features:
     details: 每次打开纯纯看番，你都可以接收到来自多个番剧源的番剧更新提示。
   - title: 自定义
     details: 纯纯看番具有相当多的主题选项，也可以跟随系统自动设置暗黑模式。
-footer: Apache-2.0 Licensed | Copyright © 2018-present EasyBangumi.org
+footer: Apache-2.0 Licensed | Copyright © 2022-present EasyBangumi.org
 ---
