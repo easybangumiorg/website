@@ -6,6 +6,8 @@
 
 ::: warning 注意
 这篇教程并不涉及番剧的解析、播放等操作
+
+本示例代码已开源: [easybangumiorg/Extension-example-bangumiapi](https://github.com/easybangumiorg/Extension-example-bangumiapi)
 :::
 
 ## 初始化项目
@@ -227,12 +229,11 @@ import okhttp3.Headers
 var ROOT_URL = "https://api.bgm.tv"
 
 fun getJson(target: String): Result<JsonElement> {
-    // 获取json
     return runCatching {
-        val req = networkHelper.cloudflareUserClient.newCall(
+        val req = networkHelper.client.newCall(
             GET(url(target),
                 Headers.Builder()
-                    .add("User-Agent","EasyBangumi/4.1.0 (Android;API 1) EasyBangumi/bangumiapi/1.0 (Android;Extension)")
+                    .add("User-Agent","EasyBangumi/4.1.0 (Android;API 1;lib 1.2-SNAPSHOT) EasyBangumi/bangumiapi/1.0 (Android;Extension)")
                     .build()
             )
         ).execute()
@@ -242,52 +243,15 @@ fun getJson(target: String): Result<JsonElement> {
 }
 
 fun url(source: String): String {
-    // 处理Url的拼接，采用纯纯看番提供的工具
     return SourceUtils.urlParser(ROOT_URL, source)
 }
 
 operator fun JsonElement.get(index: Int): JsonElement {
-    // 处理json列表
-    return this.asJsonArray[index]?:NonJsonElement()
+    return this.asJsonArray[index]!!
 }
 
 operator fun JsonElement.get(key: String): JsonElement {
-    // 处理json对象
-    return this.asJsonObject[key]?:NonJsonElement()
-}
-
-class NonJsonElement(): JsonElement() {
-    // 处理不存在的json项目
-    override fun getAsString(): String {
-        return ""
-    }
-    override fun getAsJsonNull(): JsonNull {
-        return super.getAsJsonNull()
-    }
-    override fun getAsBoolean(): Boolean {
-        return false
-    }
-    override fun getAsNumber(): Number {
-        return 0
-    }
-    override fun getAsDouble(): Double {
-        return 0.0
-    }
-    override fun getAsFloat(): Float {
-        return 0f
-    }
-    override fun getAsLong(): Long {
-        return 0L
-    }
-    override fun getAsInt(): Int {
-        return 0
-    }
-    override fun getAsCharacter(): Char {
-        return ' '
-    }
-    override fun deepCopy(): JsonElement {
-        return this
-    }
+    return this.asJsonObject[key]!!
 }
 ```
 
@@ -331,7 +295,7 @@ class BangumiApiPageComponent(source: BangumiApiSource): ComponentWrapper(source
 
 简单写一些代码实现功能
 
-```kotlin{14-22,27-56}
+```kotlin{6-9,14-22,27-56}
 package org.easybangumi.extension.zh.bangumiapi
 
 import com.heyanle.bangumi_source_api.api.component.ComponentWrapper
@@ -394,3 +358,145 @@ class BangumiApiPageComponent(source: BangumiApiSource): ComponentWrapper(source
 效果展示
 
 ![bangumiapi-calendar-success](/images/guide/extension/bangumiapi-calendar-success.jpg)
+
+### 创建详细信息组件 DetailedComponent
+
+详细信息组件负责番剧卡片点进二级页面的内容，具体是以下的内容：
+
+![get-detailed](/images/guide/extension/get-detailed.png)
+
+分别是番剧标题、标签、封面图、描述信息和播放列表，由于BangumiAPI不提供播放播放服务，播放列表一律返回空，在实际情况中还应该区分播放线路使用。
+
+以下是一个详细信息组件的模板，这份模板将专注实现番剧信息的获取而忽略播放列表
+
+```kotlin
+package org.easybangumi.extension.zh.bangumiapi
+
+import com.heyanle.bangumi_source_api.api.SourceResult
+import com.heyanle.bangumi_source_api.api.component.ComponentWrapper
+import com.heyanle.bangumi_source_api.api.component.detailed.DetailedComponent
+import com.heyanle.bangumi_source_api.api.entity.Cartoon
+import com.heyanle.bangumi_source_api.api.entity.CartoonImpl
+import com.heyanle.bangumi_source_api.api.entity.CartoonSummary
+import com.heyanle.bangumi_source_api.api.entity.PlayLine
+import com.heyanle.bangumi_source_api.api.withResult
+import kotlinx.coroutines.Dispatchers
+
+class BangumiApiDetailedComponent(source: BangumiApiSource) : ComponentWrapper(source), DetailedComponent {
+
+    override suspend fun getAll(summary: CartoonSummary): SourceResult<Pair<Cartoon, List<PlayLine>>> {
+        return withResult(Dispatchers.IO) {
+            getDetailByID(summary.id) to arrayListOf()
+        }
+    }
+
+    override suspend fun getDetailed(summary: CartoonSummary): SourceResult<Cartoon> {
+        return withResult(Dispatchers.IO) {
+            getDetailByID(summary.id)
+        }
+    }
+
+    override suspend fun getPlayLine(summary: CartoonSummary): SourceResult<List<PlayLine>> {
+        return withResult(Dispatchers.IO) {
+            arrayListOf()
+        }
+    }
+
+    suspend fun getDetailByID(id: String): Cartoon {
+        TODO("Not yet implemented")
+    }
+}
+```
+
+接下来实现`getDetailByID`函数
+
+```kotlin
+private fun getDetailByID(id: String): Cartoon {
+    val doc = getJson("/v0/subjects/$id").getOrElse { throw it }
+
+    val nameCN = doc["name_cn"].asString
+    val score = doc["rating"]["score"].asString
+
+    val tags = arrayListOf<String>()
+    doc["tags"].asJsonArray.forEachIndexed { i, it ->
+        if (i > 10) return@forEachIndexed
+        tags.add(it["name"].asString)
+    }
+
+    return CartoonImpl(
+        id = id,
+        url = "http://bgm.tv/subject/$id",
+        source = this.source.key,
+
+        title = nameCN.ifEmpty { doc["name"].asString },
+        coverUrl = if (doc["images"].isJsonNull) "" else doc["images"]["common"].asString,
+
+        intro = "bgm "+if (score.equals("0")) "未评分" else score,
+        description = doc["summary"].asString,
+
+        genre = tags.joinToString(","),
+
+        status = Cartoon.STATUS_UNKNOWN,
+        updateStrategy = Cartoon.UPDATE_STRATEGY_NEVER
+    )
+}
+```
+
+于是就可以获取番剧的详情信息了（尽管不能播放）
+
+![get-detail-self](/images/guide/extension/get-detail-self.png)
+
+### 创建搜索组件 SearchComponent
+
+需要提供搜索功能来查找指定番剧，这里直接给出完整代码
+
+```kotlin
+package org.easybangumi.extension.zh.bangumiapi
+
+import com.heyanle.bangumi_source_api.api.SourceResult
+import com.heyanle.bangumi_source_api.api.component.ComponentWrapper
+import com.heyanle.bangumi_source_api.api.component.search.SearchComponent
+import com.heyanle.bangumi_source_api.api.entity.CartoonCover
+import com.heyanle.bangumi_source_api.api.entity.CartoonCoverImpl
+import com.heyanle.bangumi_source_api.api.withResult
+import kotlinx.coroutines.Dispatchers
+
+class BangumiApiSearchComponent(source: BangumiApiSource) : ComponentWrapper(source), SearchComponent {
+    override fun getFirstSearchKey(keyword: String): Int {
+        return 0
+    }
+
+    override suspend fun search(
+        pageKey: Int,
+        keyword: String
+    ): SourceResult<Pair<Int?, List<CartoonCover>>> {
+        return withResult(Dispatchers.IO) {
+            val doc = getJson("/search/subject/$keyword?type=2&responseGroup=small&max_results=20&start=$pageKey")
+                .getOrElse { throw it }
+            val next = if (doc["results"].asInt > pageKey+20) pageKey+20 else null
+            val list = arrayListOf<CartoonCover>()
+
+            doc["list"].asJsonArray.forEach{
+                val nameCN = it["name_cn"].asString
+
+                list.add(
+                    CartoonCoverImpl(
+                        id = it["id"].asString,
+                        source = this.source.key,
+                        url = it["url"].asString,
+                        title = nameCN.ifEmpty { it["name"].asString },
+                        intro = "",
+                        coverUrl = if (it["images"].isJsonNull) "" else it["images"]["common"].asString,
+                    )
+                )
+            }
+
+            return@withResult next to list
+        }
+    }
+}
+```
+
+效果展示
+
+![search](/images/guide/extension/search.png)
