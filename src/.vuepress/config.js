@@ -86,7 +86,9 @@ export default defineUserConfig({
                             {
                                 text: "开发",
                                 children: [
-                                    '/zh/guide/contribution/'
+                                    '/zh/guide/contribution/noumenon.md',
+                                    '/zh/guide/contribution/extension-example.md',
+                                    '/zh/guide/contribution/extension-utils.md'
                                 ],
                             },
                         ]
@@ -109,7 +111,9 @@ export default defineUserConfig({
                             text: '开发',
                             collapsible: true,
                             children: [
-                                '/zh/guide/contribution/',
+                                '/zh/guide/contribution/noumenon.md',
+                                '/zh/guide/contribution/extension-example.md',
+                                '/zh/guide/contribution/extension-utils.md'
                             ],
                         },
                     ],

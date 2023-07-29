@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/easybangumiorg/.github#readme",
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "^2.0.0-beta.61",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.61",
-    "vuepress": "^2.0.0-beta.61"
+    "@vuepress/plugin-google-analytics": "^2.0.0-beta.66",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.66",
+    "vuepress": "^2.0.0-beta.66"
   },
   "dependencies": {
     "artplayer": "^5.0.9",
