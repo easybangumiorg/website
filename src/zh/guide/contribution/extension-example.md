@@ -167,7 +167,9 @@ class BangumiApiSource : ExtensionSource(), ExtensionIconSource  {
 }
 ```
 
-之前所有的内容都是定义插件本身的，从这一步开始定义这个插件中唯一的番剧源`BangumiApiSource`，由于谷歌资源系统的限制，之前复制两份的LOGO需要使用另外一个，也就是`R.drawable.icon`。之后需要定义番剧源的五个属性：
+`R.drawable.icon`是[插件图标](#插件图标)定义的插件LOGO。
+
+之前所有的内容都是定义插件本身的，从这一步开始定义这个插件中唯一的番剧源`BangumiApiSource`及其五个属性：
 
 - `describe`定义的是番剧源的描述，不是必填项目
 - `label`定义的是番剧源在纯纯看番中显示的名称
