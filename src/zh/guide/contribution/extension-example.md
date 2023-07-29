@@ -1,6 +1,6 @@
 # 插件示例
 
-以[Bangumi API](https://bangumi.github.io/api/)为例开发一个纯纯看番插件项目，由于纯纯看番的插件系统比较灵活，这里仅通过Bangumi API实现番剧的推荐、查找、信息展示。
+以[Bangumi API](https://bangumi.github.io/api/)为例开发一个纯纯看番插件项目，由于纯纯看番的插件系统比较灵活，这里仅通过Bangumi API实现番剧的更新日历、查找、信息展示。
 
 在一切开始之前，建议使用[自己构建](/zh/guide/contribution/noumenon.md)的纯纯看番，这样就可以在Android Studio中对本体和插件进行调试。
 
@@ -195,4 +195,202 @@ class Factory: SourceFactory {
 }
 ```
 
+create函数返回的是源的实例列表，如果你希望在一个插件内添加多个番剧源，可以修改这里的返回结果。
+
 在做完这一步后，你可以尝试编译整个项目并且在你的安卓设备上运行，如果一切都设置正确，那么在纯纯看番软件内就可以看到你编写的插件了，但是在这时编写的插件并没有实现功能，还需要接下来的教程。
+
+## 基本功能
+
+纯纯看番一共有五种基本的组件，通过实现ComponentWrapper类进行加载，实现Component来访问番剧源类。
+
+至少需要PageComponent、SearchComponent和DetailedComponent来实现一个番剧源的基本功能。
+
+### 创建工具类
+
+在开始之前需要创建一个工具类，将常用的参数、网络访问和Json解析都打包到一起，来使得编写更加流畅。
+
+::: tip
+在引入插件化库后可以直接使用**gson**和**okhttp3**
+:::
+
+```kotlin
+package org.easybangumi.extension.zh.bangumiapi
+
+import com.google.gson.JsonElement
+import com.google.gson.JsonNull
+import com.google.gson.JsonParser
+import com.heyanle.lib_anim.utils.SourceUtils
+import com.heyanle.lib_anim.utils.network.GET
+import com.heyanle.lib_anim.utils.network.networkHelper
+import okhttp3.Headers
+
+var ROOT_URL = "https://api.bgm.tv"
+
+fun getJson(target: String): Result<JsonElement> {
+    // 获取json
+    return runCatching {
+        val req = networkHelper.cloudflareUserClient.newCall(
+            GET(url(target),
+                Headers.Builder()
+                    .add("User-Agent","EasyBangumi/4.1.0 (Android;API 1) EasyBangumi/bangumiapi/1.0 (Android;Extension)")
+                    .build()
+            )
+        ).execute()
+        val body = req.body!!.string()
+        JsonParser.parseString(body)
+    }
+}
+
+fun url(source: String): String {
+    // 处理Url的拼接，采用纯纯看番提供的工具
+    return SourceUtils.urlParser(ROOT_URL, source)
+}
+
+operator fun JsonElement.get(index: Int): JsonElement {
+    // 处理json列表
+    return this.asJsonArray[index]?:NonJsonElement()
+}
+
+operator fun JsonElement.get(key: String): JsonElement {
+    // 处理json对象
+    return this.asJsonObject[key]?:NonJsonElement()
+}
+
+class NonJsonElement(): JsonElement() {
+    // 处理不存在的json项目
+    override fun getAsString(): String {
+        return ""
+    }
+    override fun getAsJsonNull(): JsonNull {
+        return super.getAsJsonNull()
+    }
+    override fun getAsBoolean(): Boolean {
+        return false
+    }
+    override fun getAsNumber(): Number {
+        return 0
+    }
+    override fun getAsDouble(): Double {
+        return 0.0
+    }
+    override fun getAsFloat(): Float {
+        return 0f
+    }
+    override fun getAsLong(): Long {
+        return 0L
+    }
+    override fun getAsInt(): Int {
+        return 0
+    }
+    override fun getAsCharacter(): Char {
+        return ' '
+    }
+    override fun deepCopy(): JsonElement {
+        return this
+    }
+}
+```
+
+### 创建页面组件 PageComponent
+
+番剧源的浏览一般从页面开始，纯纯看番在页面组件中提供两层页面层级，分别是页面组和页面，页面组可以包含多个页面，而页面也有两种，带封面的番剧页面和不带番剧封面的页面，两种页面均支持异步加载。
+
+在PageComponent中，需要实现getPages函数，可以返回页面组或页面组成的列表，而页面组和页面都支持返回一个异步，当页面或页面组打开的时候执行
+
+以下是一个页面组件的基本结构
+
+```kotlin
+package org.easybangumi.extension.zh.bangumiapi
+
+import com.heyanle.bangumi_source_api.api.component.ComponentWrapper
+import com.heyanle.bangumi_source_api.api.component.page.PageComponent
+import com.heyanle.bangumi_source_api.api.component.page.SourcePage
+
+class BangumiApiPageComponent(source: BangumiApiSource): ComponentWrapper(source), PageComponent {
+    override fun getPages(): List<SourcePage> {
+        return  listOf(
+            // 页面组或是页面
+        )
+    }
+
+    // 功能函数
+}
+```
+
+紧接着在`BangumiApiSource`中启用这个组件
+
+```kotlin {4}
+// 以上省略
+    override fun components(): List<Component> {
+        return listOf(
+            BangumiApiPageComponent(this),
+        )
+    }
+}
+```
+
+简单写一些代码实现功能
+
+```kotlin{14-22,27-56}
+package org.easybangumi.extension.zh.bangumiapi
+
+import com.heyanle.bangumi_source_api.api.component.ComponentWrapper
+import com.heyanle.bangumi_source_api.api.component.page.PageComponent
+import com.heyanle.bangumi_source_api.api.component.page.SourcePage
+import com.heyanle.bangumi_source_api.api.entity.CartoonCover
+import com.heyanle.bangumi_source_api.api.entity.CartoonCoverImpl
+import com.heyanle.bangumi_source_api.api.withResult
+import kotlinx.coroutines.Dispatchers
+
+class BangumiApiPageComponent(source: BangumiApiSource): ComponentWrapper(source), PageComponent {
+    override fun getPages(): List<SourcePage> {
+        return  listOf(
+            // 新番时刻表
+            SourcePage.Group(
+                "每日更新列表",
+                false,
+            ) {
+                withResult(Dispatchers.IO) {
+                    CalendarGroup()
+                }
+            },
+        )
+    }
+
+    // 功能函数
+    fun CalendarGroup(): List<SourcePage.SingleCartoonPage> {
+        val group = arrayListOf<SourcePage.SingleCartoonPage>()
+        val doc = getJson("/calendar").getOrElse { throw it }
+        doc.asJsonArray.forEach{
+            val items = arrayListOf<CartoonCover>()
+            it["items"].asJsonArray.forEach{item ->
+                println(item.toString())
+                val nameCN = item["name_cn"].asString
+
+                items.add(CartoonCoverImpl(
+                    id = item["id"].asString,
+                    source = this.source.key,
+                    url = item["url"].asString,
+                    title = if (nameCN.isEmpty()) item["name"].asString else nameCN,
+                    intro = item["summary"].asString,
+                    coverUrl = if (item["images"].isJsonNull) "" else item["images"]["common"].asString,
+                ))
+            }
+            group.add(SourcePage.SingleCartoonPage.WithCover(
+                label = it["weekday"]["cn"].asString,
+                firstKey = {1},
+            ) {
+                withResult(Dispatchers.IO) {
+                    null to items
+                }
+            })
+
+        }
+        return group
+    }
+}
+```
+
+效果展示
+
+![bangumiapi-calendar-success](/images/guide/extension/bangumiapi-calendar-success.jpg)
