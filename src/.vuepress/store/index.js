@@ -88,28 +88,6 @@ export default createStore({
                 updated: null,
                 data: null,
             },
-            distributive: {
-                path: null,
-                isConnect: false,
-                meta: null,
-                server: null,
-                secret: null,
-            },
-            source: {
-                list: {},
-                isLoaded: false,
-                choose: null,
-                count: 0
-            },
-            contentStack: [
-                {
-                    type: "blank",
-                    source: "official",
-                    title: "分布式纯纯看番",
-                    text: "此页面仅供链接分布式纯纯看番使用，任何内容均与纯纯看番无关，纯纯看番仅提供相应的接口规范和标准程序实现，并不存储且分发相应的内容。"
-                }
-            ],
-            contentCanBackward: true
         }
     },
     mutations: {
@@ -123,32 +101,6 @@ export default createStore({
             state.nightly = {
                 updated: new Date().getTime(),
                 data: data,
-            }
-        },
-        setDistributive(state, data) {
-            state.distributive = data
-        },
-        setSource(state, data) {
-            state.source = data
-        },
-        pushContent(state, content) {
-            const last = state.contentStack[state.contentStack.length - 1]
-
-            if (last.type == content.type
-                && last.source == content.source
-                && last.title == content.title) {
-                return
-            }
-
-            state.contentStack.push(content)
-            state.contentCanBackward = true
-        },
-        popContent(state) {
-            if (state.contentStack.length > 1) {
-                state.contentStack.pop()
-            }
-            if (state.contentStack.length == 1) {
-                state.contentCanBackward = false
             }
         },
     },
@@ -173,55 +125,5 @@ export default createStore({
 
             return worker.getNightlyData(this, "nightly")
         },
-        getSourceList() {
-            if (this.state.source.isLoaded) {
-                return this.state.source.list
-            }
-            return fetch(`${this.state.distributive.path}/list`)
-                .then(res => res.json())
-                .then(res => {
-                    let choose = null
-                    let a = 0
-                    for (let i in res.data) {
-                        if (!choose) {
-                            choose = i
-                        }
-                        a += 1
-                    }
-
-                    this.commit('setSource', {
-                        list: res.data,
-                        isLoaded: true,
-                        count: a,
-                        choose
-                    })
-
-                    return res.data
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        },
-        chooseSource(store, source) {
-            if (!source in this.state.source.list) {
-                console.warn("A non-existent source was selected")
-                return
-            }
-            store.commit('setSource', {
-                ...store.state.source,
-                choose: source
-            })
-        },
-        openContent(store, content) {
-            store.commit('pushContent', content)
-        },
-        backwardContent(store) {
-            store.commit('popContent')
-        }
     },
-    getters: {
-        content(state) {
-            return state.contentStack[state.contentStack.length - 1]
-        }
-    }
 })

@@ -61,7 +61,7 @@ export default defineUserConfig({
                 lastUpdatedText: "上次更新",
                 contributorsText: "贡献者",
 
-                navbar: [
+                navbar: [ // 顶部导航栏
                     { text: "主页", link: "/zh/" },
                     {
                         text: "下载",
@@ -95,7 +95,7 @@ export default defineUserConfig({
                     },
                 ],
 
-                sidebar: {
+                sidebar: { // 个别页面的侧边栏
                     '/zh/guide/': [
                         {
                             text: '常见问题',
