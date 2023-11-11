@@ -2,6 +2,7 @@ import { defineUserConfig, defaultTheme } from 'vuepress'
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { getDirname, path } from '@vuepress/utils'
+import { searchPlugin } from '@vuepress/plugin-search'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -9,7 +10,7 @@ export default defineUserConfig({
     // 文件目录
     dest: "./dist",
     temp: "./.temp",
-    cache: "./.cache",
+    cache: "./.temp/cache",
 
     // 头部设置
     head: [
@@ -139,7 +140,7 @@ export default defineUserConfig({
         },
     }),
 
-    // 多语言支持
+    // 网站多语言支持
     locales: {
         '/': {
             lang: 'en-US',
@@ -160,6 +161,16 @@ export default defineUserConfig({
         }),
         googleAnalyticsPlugin({
             id: "G-9CF0ZQPB32"
+        }),
+        searchPlugin({
+            locales: {
+                '/': {
+                    placeholder: 'Search',
+                },
+                '/zh/': {
+                    placeholder: '搜索',
+                },
+            },
         }),
     ],
 })
