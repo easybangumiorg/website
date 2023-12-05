@@ -2,23 +2,23 @@
 home: true
 meta:
   - name: keywords
-    content: 纯纯看番, EasyBangumi, Official, Android app
-lang: en-US
+    content: 纯纯看番, EasyBangumi, Animation, Android app
+lang: zh_CN
 heroImage: /icons/FAVICON-RAW.png
 heroHeight: 140
 actions:
-  - text: Download →
-    link: /download/
+  - text: 下载纯纯看番 →
+    link: /zh/download/
     type: primary
-  - text: Extensions
-    link: /extensions/
+  - text: 扩展列表
+    link: /zh/extensions/
     type: secondary
 features:
-  - title: Extensions
-    details: We only have two extensions at the moment, but you can expect them.
-  - title: Tracking
-    details: Every time you start EasyBangumi, you will automatically get updates from various sources.
-  - title: Customization
-    details: EasyBangumi has a variety of themes to choose from, and will automatically switch the dark mode according to the system.
+  - title: 插件化
+    details: 比较系统的插件化框架，通过安装插件来获取更多的源。
+  - title: 追番
+    details: 每次打开纯纯看番，你都可以接收到来自多个番剧源的番剧更新提示。
+  - title: 自定义
+    details: 纯纯看番具有相当多的主题选项，也可以跟随系统自动设置暗黑模式。
 footer: Apache-2.0 Licensed | Copyright © 2022-present EasyBangumi.org
 ---
