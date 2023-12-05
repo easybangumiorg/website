@@ -1,14 +1,14 @@
 ---
-title: Extensions
-description: List of available extensions to use with EasyBangumi, you can download them from here or from the app.
+title: 扩展
+description: 可供纯纯看番使用的扩展。
 meta:
   - name: keywords
     content: 纯纯看番, Extensions, Official, Android app
-lang: en-US
+lang: zh_CN
 sidebar: false
 ---
-# Extensions
+# 扩展
 
-List of available extensions to use with EasyBangumi, you can download them from here or from the app.
+可供纯纯看番使用的扩展，你可以在以下列表或者其他地方下载。
 
 <ExtensionsWrapper/>

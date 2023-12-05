@@ -1,3 +1,9 @@
 {
-    "vue3snippets.enable-compile-vue-file-on-did-save-code": false
+    "vue3snippets.enable-compile-vue-file-on-did-save-code": false,
+    "html.customData": [
+        "./node_modules/mdui/html-data.zh-cn.json"
+    ],
+    "css.customData": [
+        "./node_modules/mdui/css-data.zh-cn.json"
+    ]
 }
