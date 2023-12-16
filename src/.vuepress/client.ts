@@ -6,8 +6,6 @@ export default defineClientConfig({
         app.use(store)
     },
     setup() { },
-    layouts: {
-
-    },
+    layouts: { },
     rootComponents: [],
 })

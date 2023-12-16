@@ -36,7 +36,7 @@ export default defineUserConfig({
     ],
 
     // 主题配置
-    theme: mduiTheme({
+    theme: defaultTheme({
         // 基本配置
         logo: "/icons/logo.ico",
         repo: "easybangumiorg/easybangumi",

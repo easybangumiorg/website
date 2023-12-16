@@ -8,10 +8,10 @@ heroImage: /icons/FAVICON-RAW.png
 heroHeight: 140
 actions:
   - text: Download →
-    link: /download/
+    link: /en/download/
     type: primary
   - text: Extensions
-    link: /extensions/
+    link: /en/extensions/
     type: secondary
 features:
   - title: Extensions

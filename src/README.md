@@ -8,10 +8,10 @@ heroImage: /icons/FAVICON-RAW.png
 heroHeight: 140
 actions:
   - text: 下载纯纯看番 →
-    link: /zh/download/
+    link: /download/
     type: primary
   - text: 扩展列表
-    link: /zh/extensions/
+    link: /extensions/
     type: secondary
 features:
   - title: 插件化

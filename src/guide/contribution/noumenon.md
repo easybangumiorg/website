@@ -14,7 +14,7 @@ git clone git@github.com:easybangumiorg/EasyBangumi.git
 
 ## 官方构建
 
-<https://easybangumi.org/zh/download/>
+<https://easybangumi.org/download/>
 
 正式版发布 <https://github.com/easybangumiorg/EasyBangumi/releases/>
 

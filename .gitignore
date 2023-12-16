@@ -28,3 +28,6 @@ theme_eject/
 
 # yarn
 yarn-error.log
+
+# Ignore tmep code
+default-theme/
