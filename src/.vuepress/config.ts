@@ -18,13 +18,16 @@ export default defineUserConfig({
 
     // 主题配置
     theme: recoTheme({
+
         // 基本配置
+        style: "@vuepress-reco/style-default",
         logo: "/icons/logo.ico",
         repo: "easybangumiorg/easybangumi",
         // 协同编辑
-        docsRepo: "easybangumiorg/website",
+        docsRepo: "https://github.com/easybangumiorg/website",
         docsBranch: 'main',
         docsDir: "src",
+        
         editLink: true,
         // 上次编辑
         lastUpdated: true,
