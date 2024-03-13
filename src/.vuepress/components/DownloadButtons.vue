@@ -5,26 +5,17 @@ import { onMounted, ref } from 'vue'
 const store = useStore()
 
 let stable_data = null
-let nightly_data = null
 const tag = ref({
   stable: "loading",
-  nightly: "loading"
 })
 
 onMounted(async () => {
   stable_data = await store.dispatch("getStableReleaseData")
-  nightly_data = await store.dispatch("getNightlyReleaseData")
   tag.value.stable = stable_data.tag_name
-  tag.value.nightly = nightly_data.tag_name
 })
 
 const downloadStable = () => {
   const url = getDownloadPath(stable_data, "https://github.com/easybangumiorg/EasyBangumi/releases/latest")
-  window.location.assign(url)
-}
-
-const downloadNightly = () => {
-  const url = getDownloadPath(nightly_data, "https://github.com/easybangumiorg/EasyBangumi-nightly/releases/latest")
   window.location.assign(url)
 }
 
@@ -49,11 +40,6 @@ const getDownloadPath = (release, fallbackUrl) => {
       <span>Stable</span>
       <br>
       <span class="downloadTag">{{ tag.stable }}</span>
-    </button>
-    <button class="nightly" @click="downloadNightly">
-      <span>Nightly</span>
-      <br>
-      <span class="downloadTag">{{ tag.nightly }}</span>
     </button>
     <span class="versionNotice">
       Requires

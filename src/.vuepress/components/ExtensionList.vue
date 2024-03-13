@@ -19,7 +19,7 @@ export default {
                 </span>
             </span>
         </h3>
-        <div v-for="extension in list" :id="extension.pkg" :key="extension.apk" class="anchor">
+        <div v-for="extension in list" :id="extension.package" :key="extension.package" class="anchor">
             <ExtensionItem :item="extension" />
         </div>
     </div>
