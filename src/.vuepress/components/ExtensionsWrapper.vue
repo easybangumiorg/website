@@ -1,7 +1,7 @@
 <script>
 import ExtensionList from "./ExtensionList.vue";
 
-const GITHUB_EXTENSION_JSON = "https://raw.githubusercontent.com/easybangumiorg/EasyBangumi-sources/main/index.json"
+const GITHUB_EXTENSION_JSON = "https://raw.githubusercontent.com/easybangumiorg/EasyBangumi-sources/public/repository/extension/extension.json"
 
 export default {
     components: { ExtensionList },
@@ -13,7 +13,7 @@ export default {
     },
     async beforeMount() {
         const data = await fetch(GITHUB_EXTENSION_JSON).then(res => res.json())
-        this.$data.extensions = data;
+        this.$data.extensions = data.extensionsV1;
         this.$nextTick(() => {
             this.loading = false;
         });

@@ -3,19 +3,19 @@ export default {
     props: ["item"],
     computed: {
         pkgId: function () {
-            return this.item.pkg
+            return this.item.package
         },
         pkgName: function () {
-            return this.item.name
+            return this.item.label
         },
         pkgVersion: function () {
-            return "v" + this.item.version
+            return "v" + this.item.versionName
         },
         iconUrl: function () {
-            return `https://raw.githubusercontent.com/easybangumiorg/EasyBangumi-sources/main/icon/${this.item.icon}`
+            return `https://raw.githubusercontent.com/easybangumiorg/EasyBangumi-sources/public/repository/extension/icon/${this.item.icon}`
         },
         apkUrl: function () {
-            return `https://raw.githubusercontent.com/easybangumiorg/EasyBangumi-sources/main/apks/${this.item.apk}`
+            return `${this.item.fileUrl}`
         },
     },
 };
