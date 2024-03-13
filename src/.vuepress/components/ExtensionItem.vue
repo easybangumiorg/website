@@ -94,9 +94,8 @@ export default {
         padding-top: .5rem;
         padding-bottom: .3rem;
         border-radius: 4px;
-        color: white;
-        background-color: #3eaf7c;
-        border: 1px solid #3eaf7c;
+        color: rgb(93 103 232 / var(--tw-bg-opacity));
+        border: 1px solid rgb(93 103 232 / var(--tw-bg-opacity));
         font-weight: 700;
         line-height: 24px;
 
@@ -105,8 +104,7 @@ export default {
         }
 
         &:hover {
-            background-color: white;
-            color: #3eaf7c;
+            background-color: lighten(rgb(93 103 232), 20%);
             text-decoration: none;
 
             .material-icons {
