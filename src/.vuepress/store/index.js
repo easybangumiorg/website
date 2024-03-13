@@ -1,7 +1,6 @@
 import { createStore } from 'vuex'
 
 const RELEASE_API = "https://api.github.com/repos/easybangumiorg/EasyBangumi/releases/latest"
-const NIGHTLY_API = "https://api.github.com/repos/easybangumiorg/EasyBangumi-nightly/releases/latest"
 
 const worker = (function () {
     const networkMap = new Map()
@@ -63,17 +62,6 @@ const worker = (function () {
                     })
             })
         },
-        getNightlyData(store, name) {
-            return new Promise((resolve, reject) => {
-                _getData(store, name, "setNightlyReleaseData", NIGHTLY_API)
-                    .then(() => {
-                        resolve(store.state.nightly.data)
-                    })
-                    .catch((reason) => {
-                        reject(reason)
-                    })
-            })
-        },
     }
 })()
 
@@ -84,21 +72,11 @@ export default createStore({
                 updated: null,
                 data: null,
             },
-            nightly: {
-                updated: null,
-                data: null,
-            },
         }
     },
     mutations: {
         setStableReleaseData(state, data) {
             state.stable = {
-                updated: new Date().getTime(),
-                data: data,
-            }
-        },
-        setNightlyReleaseData(state, data) {
-            state.nightly = {
                 updated: new Date().getTime(),
                 data: data,
             }
@@ -114,16 +92,6 @@ export default createStore({
             }
 
             return worker.getStableData(this, "stable")
-        },
-        getNightlyReleaseData() {
-            const { updated } = this.state.nightly;
-            const now = new Date().getTime();
-
-            if (updated != null && now - updated <= 60 * 60 * 24 * 1000) {
-                return Promise.resolve(this.state.nightly.data);
-            }
-
-            return worker.getNightlyData(this, "nightly")
         },
     },
 })

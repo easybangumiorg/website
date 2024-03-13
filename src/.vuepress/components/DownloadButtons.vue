@@ -82,12 +82,12 @@ const getDownloadPath = (release, fallbackUrl) => {
   }
 
   .stable {
-    background-color: #3eaf7c;
-    border-color: #3eaf7c;
+    background-color: rgb(93 103 232 / var(--tw-bg-opacity));
+    border-color: rgb(93 103 232 / var(--tw-bg-opacity));
 
     &:hover {
-      background-color: lighten(#3eaf7c, 10%);
-      border-color: lighten(#3eaf7c, 10%);
+      background-color: lighten(rgb(93 103 232), 10%);
+      border-color: lighten(rgb(93 103 232), 10%);
     }
   }
 
