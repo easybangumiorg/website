@@ -1,32 +1,13 @@
-import { defineUserConfig, defaultTheme } from 'vuepress'
-import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
-import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
-import { getDirname, path } from '@vuepress/utils'
-import { searchPlugin } from '@vuepress/plugin-search'
-import { viteBundler } from '@vuepress/bundler-vite'
-import { mduiTheme } from './theme'
+import { defineUserConfig } from 'vuepress'
+import { recoTheme } from 'vuepress-theme-reco'
+// import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+// import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+// import { searchPlugin } from '@vuepress/plugin-search'
+// import { getDirname, path } from '@vuepress/utils'
  
-const __dirname = getDirname(import.meta.url)
+// const __dirname = getDirname(import.meta.url)
 
 export default defineUserConfig({
-    // 文件目录
-    dest: "./dist",
-    temp: "./.temp",
-    cache: "./.temp/cache",
-
-    // 打包设置
-    bundler: viteBundler({
-        viteOptions: {},
-        vuePluginOptions: {
-            template: {
-                compilerOptions: {
-                    // 所有以 mdui- 开头的标签名都是 mdui 组件
-                    isCustomElement: (tag) => tag.startsWith('mdui-')
-                }
-            }
-        },
-    }),
-
     // 头部设置
     head: [
         ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -36,7 +17,7 @@ export default defineUserConfig({
     ],
 
     // 主题配置
-    theme: defaultTheme({
+    theme: recoTheme({
         // 基本配置
         logo: "/icons/logo.ico",
         repo: "easybangumiorg/easybangumi",
@@ -171,21 +152,21 @@ export default defineUserConfig({
 
     // 插件
     plugins: [
-        registerComponentsPlugin({
-            componentsDir: path.resolve(__dirname, './components'),
-        }),
-        googleAnalyticsPlugin({
-            id: "G-9CF0ZQPB32"
-        }),
-        searchPlugin({
-            locales: {
-                '/en/': {
-                    placeholder: 'Search',
-                },
-                '/': {
-                    placeholder: '搜索',
-                },
-            },
-        }),
+        // registerComponentsPlugin({
+        //      componentsDir: path.resolve(__dirname, './components'),
+        // }),
+        // googleAnalyticsPlugin({
+        //     id: "G-9CF0ZQPB32"
+        // }),
+        // searchPlugin({
+        //     locales: {
+        //         '/en/': {
+        //             placeholder: 'Search',
+        //         },
+        //         '/': {
+        //             placeholder: '搜索',
+        //         },
+        //     },
+        // }),
     ],
 })
