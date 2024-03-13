@@ -1,4 +1,4 @@
-name: PR build check
+name: PR 构建检查
 
 on:
   pull_request:
@@ -7,34 +7,28 @@ on:
     paths-ignore:
       - '.github/**'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          # submodules: true
 
-      - name: Setup Node.js
+      - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
+          cache: yarn
 
-      - name: Check cache
-        uses: actions/cache@v3
-        id: npm-cache
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+      - name: 安装依赖
+        run: yarn install --frozen-lockfile
 
-      - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-        run: npm install
-
-      - name: Build website
-        run: npm run build
+      - name: 构建文档
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+        run: |-
+          yarn run docs:build
+          > docs/.vuepress/dist/.nojekyll
