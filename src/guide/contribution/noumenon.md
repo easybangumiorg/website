@@ -18,4 +18,4 @@ git clone git@github.com:easybangumiorg/EasyBangumi.git
 
 正式版发布 <https://github.com/easybangumiorg/EasyBangumi/releases/>
 
-测试版发布 <https://github.com/easybangumiorg/EasyBangumi-nightly/releases/>
+~~测试版发布 <https://github.com/easybangumiorg/EasyBangumi-nightly/releases/>~~ 将不再发布测试版本，请自己编译
