@@ -7,14 +7,17 @@ export default {
 		...mapState(['stable', 'nightly']),
 
 		stableBody() {
-			const body = this.stable && this.stable.data && this.stable.data.body
+			let body = this.stable && this.stable.data && this.stable.data.body
 			if (!body) {
-				return 'loading...'
+				return '加载中...'
 			}
-			return marked(body).replace(
-				/(?<=\(|(, ))@(.*?)(?=\)|(, ))/g,
-				"<a href='https://github.com/$2' target='_blank' rel='noopener'>@$2</a>"
-			)
+			body = body.split('\r\n')
+			for (let i = 0; i < body.length; i++) {
+				if (i > 0) {
+					body[i] = `- ${body[i]}`
+				}
+			}
+			return marked.parse(body.join('\r\n'))
 		}
 	}
 };
@@ -23,15 +26,16 @@ export default {
 <template>
 	<div class="guide whatsNew">
 		<p class="title">
-			What's new
+			更新日志
 		</p>
 		<div v-html="stableBody"></div>
 		<div class="note">
 			<p>
-				View the full release
+				在
 				<a href="https://github.com/easybangumiorg/easybangumi/releases/latest" target="_blank" rel="noopener">
-					here
+					GitHub
 				</a>
+				上查看
 			</p>
 		</div>
 	</div>
@@ -53,7 +57,6 @@ export default {
 }
 
 .note {
-	color: rgba(0, 0, 0, .4);
 	font-size: .9rem;
 	text-align: right;
 }

@@ -18,7 +18,7 @@ sidebar: false
 
 ## 从 Github 上下载
 
-在一般情况下应当选择此渠道下载，更新最快
+在一般情况下应当选择此渠道下载，更新最快，如果无法访问也可以直接跳转到[GitHub Release](https://github.com/easybangumiorg/EasyBangumi/releases/latest)。
 
 <DownloadButtons/>
 
