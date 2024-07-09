@@ -1,53 +1,59 @@
 <script setup>
 import { useStore } from 'vuex'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 
 const store = useStore()
 
-let stable_data = null
-const tag = ref({
-  stable: "loading",
+const data = ref({
+  tag: "x.x.x",
+  branch: "main",
+  author: "unknown",
+  version_list: []
 })
 
 onMounted(async () => {
-  stable_data = await store.dispatch("getStableReleaseData")
-  tag.value.stable = stable_data.tag_name
+  const stable_data = await store.dispatch("getStableReleaseData")
+  data.value.tag = stable_data.tag_name
+  data.value.branch = stable_data.target_commitish
+  data.value.author = stable_data.author.login
+  data.value.version_list = stable_data.assets
 })
 
-const downloadStable = () => {
-  const url = getDownloadPath(stable_data, "https://github.com/easybangumiorg/EasyBangumi/releases/latest")
+const download = (url) => {
   window.location.assign(url)
 }
 
-const getDownloadPath = (release, fallbackUrl) => {
-  let apkUrl;
-  if (release && release.assets) {
-    release.assets.some(asset => {
-      if (asset.browser_download_url.endsWith('.apk')) {
-        apkUrl = asset.browser_download_url
-        return true
-      }
-      return false
-    })
+const parseVersion = (version) => {
+  version = version.replace("easybangumi", "")
+  version = version.replace(".apk", "")
+  version = version.replace(data.value.tag, "")
+  version = version.replaceAll("-", " ")
+  version = version.trim()
+  if (version === "") {
+    version = "Universal"
   }
-  return apkUrl || fallbackUrl
+  return version
 }
+
+const totalDownload = computed(() => {
+  return data.value.version_list.reduce((acc, cur) => acc + cur.download_count, 0)
+})
+
 </script>
 
 <template>
   <div id="DownloadButtons">
-    <button class="stable" @click="downloadStable">
-      <span>Stable</span>
+    <button class="stable" v-for="dlinfo in data.version_list" :id="dlinfo.id"
+      @click="download(data.browser_download_url)">
+      <span>{{ data.tag }}</span>
       <br>
-      <span class="downloadTag">{{ tag.stable }}</span>
+      <span class="downloadTag">{{ parseVersion(dlinfo.name) }}</span>
     </button>
     <span class="versionNotice">
-      Requires
-      <strong>Android 6.0</strong>
-      or higher.
+      需要<strong>Android 6.0</strong>或更高版本。
     </span>
   </div>
-</template> 
+</template>
 
 <style lang="scss">
 #DownloadButtons {
@@ -61,9 +67,9 @@ const getDownloadPath = (release, fallbackUrl) => {
     color: #ffffff;
     line-height: 1;
 
-    margin: 0.1em !important;
-    padding: 12px 32px;
-    border-radius: 0.2rem;
+    margin: 0 0.5em !important;
+    padding: 1.2rem 32px;
+    border-radius: 0.5rem;
     border: 1px solid #dcdfe6;
 
     width: 10em;

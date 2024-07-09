@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-    <div v-if="loading" style="min-height: 200px">loading...</div>
+    <div v-if="loading" style="min-height: 200px">加载中...</div>
     <div v-else>
         <ExtensionList :list="extensions" :total-count="extensions.length" />
     </div>
