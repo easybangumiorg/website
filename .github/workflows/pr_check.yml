@@ -24,7 +24,9 @@ jobs:
           cache: yarn
 
       - name: 安装依赖
-        run: yarn install --frozen-lockfile
+        run: |-
+          yarn config set ignore-engines true
+          yarn install --frozen-lockfile
 
       - name: 构建文档
         env:

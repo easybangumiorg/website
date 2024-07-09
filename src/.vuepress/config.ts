@@ -60,13 +60,7 @@ export default defineUserConfig({
 
         navbar: [ // 顶部导航栏
             { text: "主页", link: "/" },
-            {
-                text: "下载",
-                children: [
-                    { text: "本体", link: "/download/" },
-                    { text: "扩展", link: "/extensions/" },
-                ]
-            },
+            { text: "下载", link: "/download/" },
             {
                 text: "参考",
                 children: [

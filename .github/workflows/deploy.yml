@@ -27,11 +27,10 @@ jobs:
           node-version: 20
           cache: yarn
 
-      - name: 配置yarn忽视引擎错误
-        run: yarn config set ignore-engines true
-
       - name: 安装依赖
-        run: yarn install --frozen-lockfile
+        run: |-
+          yarn config set ignore-engines true
+          yarn install --frozen-lockfile
 
       - name: 构建文档
         env:
