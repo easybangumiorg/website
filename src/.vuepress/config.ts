@@ -2,7 +2,7 @@ import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { recoTheme } from 'vuepress-theme-reco'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
-import { searchPlugin } from '@vuepress/plugin-search'
+// import { searchPlugin } from '@vuepress/plugin-search'
 
 export default defineUserConfig({
     // 头部设置
@@ -23,7 +23,7 @@ export default defineUserConfig({
 
         // 基本配置
         logo: "/icons/logo.ico",
-        repo: "easybangumiorg/website",
+        repo: "easybangumiorg/easybangumi",
         // 协同编辑
         docsRepo: "https://github.com/easybangumiorg/website",
         docsBranch: 'main',
@@ -93,12 +93,12 @@ export default defineUserConfig({
         googleAnalyticsPlugin({
             id: "G-9CF0ZQPB32"
         }),
-        searchPlugin({
-            locales: {
-                '/': {
-                    placeholder: '搜索',
-                },
-            },
-        }),
+        // searchPlugin({
+        //     locales: {
+        //         '/': {
+        //             placeholder: '搜索',
+        //         },
+        //     },
+        // }),
     ],
 })
