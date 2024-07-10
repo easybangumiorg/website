@@ -7,7 +7,7 @@ modules: # 指定首页展示模块
   - Footer
 
 bannerBrand:
-  bgImage: '/images/bg.png'
+  bgImage: '/images/bg.webp'
   title: 纯纯看番
   description: 使用 Compose 开发的看番软件，支持多番剧源。
   tagline: 纯纯看番 6，您追番的强大动力，支持番剧搜索、首页推荐、番剧收藏（追番）、番剧分类、多主题、倍速播放、播放历史、投屏功能、番剧下载、弹幕、插件化、插件市场...
