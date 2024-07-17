@@ -2,7 +2,6 @@ import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { recoTheme } from 'vuepress-theme-reco'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
-// import { searchPlugin } from '@vuepress/plugin-search'
 
 export default defineUserConfig({
     // 头部设置
@@ -13,10 +12,7 @@ export default defineUserConfig({
         ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     ],
 
-    bundler: viteBundler({
-        viteOptions: {},
-        vuePluginOptions: {},
-    }),
+    bundler: viteBundler({ }),
 
     // 主题配置
     theme: recoTheme({
@@ -93,12 +89,5 @@ export default defineUserConfig({
         googleAnalyticsPlugin({
             id: "G-9CF0ZQPB32"
         }),
-        // searchPlugin({
-        //     locales: {
-        //         '/': {
-        //             placeholder: '搜索',
-        //         },
-        //     },
-        // }),
     ],
 })
