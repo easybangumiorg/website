@@ -35,16 +35,12 @@ const parseVersion = (version) => {
   return version
 }
 
-const totalDownload = computed(() => {
-  return data.value.version_list.reduce((acc, cur) => acc + cur.download_count, 0)
-})
-
 </script>
 
 <template>
   <div id="DownloadButtons">
     <button class="stable" v-for="dlinfo in data.version_list" :id="dlinfo.id"
-      @click="download(data.browser_download_url)">
+      @click="download(dlinfo.browser_download_url)">
       <span>{{ data.tag }}</span>
       <br>
       <span class="downloadTag">{{ parseVersion(dlinfo.name) }}</span>
