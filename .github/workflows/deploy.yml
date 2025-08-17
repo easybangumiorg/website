@@ -49,13 +49,6 @@ jobs:
         with:
           path: "src/.vuepress/dist/"
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
+      - name: 部署
         id: deployment
         uses: actions/deploy-pages@v3
