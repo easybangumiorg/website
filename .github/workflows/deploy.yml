@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
