@@ -43,26 +43,11 @@ jobs:
           chmod -c -R +rX "src/.vuepress/dist/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
-
-      - name: 归档
-        shell: sh
-        if: runner.os == 'Linux'
-        run: |
-          echo ::group::Archive artifact
-          tar \
-            --dereference --hard-dereference \
-            --directory "src/.vuepress/dist/" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            .
-          echo ::endgroup::
-
       
       - name: 上传文档
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ runner.temp }}/artifact.tar
+          path: "src/.vuepress/dist/"
 
   deploy:
     environment:
