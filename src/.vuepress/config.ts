@@ -71,6 +71,7 @@ export default defineUserConfig({
                         text: "开发",
                         children: [
                             '/docs/reference/contribution',
+                            '/docs/reference/extension-js',
                             '/docs/reference/extension-example',
                             '/docs/reference/extension-utils'
                         ],
