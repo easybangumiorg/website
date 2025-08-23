@@ -16,17 +16,17 @@
 
 1. 进入更多 -> 番源管理 -> 右上角添加仓库按钮
 
-| <img src="/images/getting-started/1.jpg" /> | <img src="/images/getting-started/2.jpg" />  |
+| <img src="/images/getting-started/1.jpg" width="600"/> | <img src="/images/getting-started/2.jpg" width="600"/>  |
 |:---------------------------------:|:----------------------------------:|
 
 2. 点击右下角添加新仓库 -> 输入仓库地址 -> 确定
 
-| <img src="/images/getting-started/3.jpg" /> | <img src="/images/getting-started/4.jpg" />  |
+| <img src="/images/getting-started/3.jpg" width="600"/> | <img src="/images/getting-started/4.jpg" width="600"/>  |
 |:---------------------------------:|:----------------------------------:|
 
 3. 返回番源管理 -> 选择拓展 Tab -> 点击番源后下载
 
-| <img src="/images/getting-started/5.jpg" /> |
+| <img src="/images/getting-started/5.jpg" width="600"/> |
 |:---------------------------------:|
 
 ### 2. APK 直接安装导入
@@ -38,7 +38,7 @@
 
 2. 授予纯纯看番获取应用列表权限
 
-| <img src="/images/getting-started/6.jpg" /> |
+| <img src="/images/getting-started/6.jpg" width="600" /> |
 |:---------------------------------:|
 
 3. 重启纯纯看番
