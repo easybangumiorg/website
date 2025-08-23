@@ -199,7 +199,7 @@ class PlayerInfo(
 
 纯纯看番的首页为二级结构，分为一级 Tab（MainTab）和二级 Tab（SubTab），同时支持封面版和文字版首页：
 
-| <img src="/images/guide/extension-js/1.jpg" width="400"/> | <img src="/images/guide/extension-js/2.jpg" width="400"/>   |
+| <img src="/images/guide/extension-js/2.jpg" width="400"/> | <img src="/images/guide/extension-js/1.jpg" width="400"/>   |
 |:---------------------------------:|:----------------------------------:|
 
 
