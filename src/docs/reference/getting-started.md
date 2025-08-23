@@ -12,7 +12,7 @@
 ### 1. JS 仓库导入（推荐）
  
 纯纯看番社区 JS 仓库，收录爱好者自行维护的番源：（需科学上网）
-https://easybangumi.org/repository/v2/index.jsonl
+[https://easybangumi.org/repository/v2/index.jsonl](https://easybangumi.org/repository/v2/index.jsonl)
 
 1. 进入更多 -> 番源管理 -> 右上角添加仓库按钮
 
@@ -32,7 +32,7 @@ https://easybangumi.org/repository/v2/index.jsonl
 ### 2. APK 直接安装导入
 
 纯纯看番社区 APK 仓库，收录爱好者自行维护的番源：（需科学上网）
-https://github.com/easybangumiorg/CommunityExtension/releases
+[https://github.com/easybangumiorg/CommunityExtension/releases]([https://github.com/easybangumiorg/CommunityExtension/releases)
 
 1. 下载 APK 后直接打开安装（该番源没有图标）
 
