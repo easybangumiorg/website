@@ -1,11 +1,7 @@
 # 插件示例
 
 ::: danger 警告
-纯纯看番插件格式与技术可能在不远的将来发生改变，这篇教程仅供参考
-
-详情请参考纯纯看番[CommunityExtension](https://github.com/easybangumiorg/CommunityExtension)仓库。
-
-此外下一代纯纯看番[EasyMyGo](https://github.com/easybangumiorg/EasyMyGo)也在开发中，请关注仓库代码以及衍生代码。
+新版纯纯看番已支持更轻量级的 JS 插件源。原有插件格式已不推荐，可参考 `JS 插件示例` 文档
 :::
 
 以[Bangumi API](https://bangumi.github.io/api/)为例开发一个纯纯看番插件项目，由于纯纯看番的插件系统比较灵活，这里仅通过Bangumi API实现番剧的更新日历、查找、信息展示。
