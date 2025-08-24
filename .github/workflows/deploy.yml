@@ -39,6 +39,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: 安装依赖
         run: |-
           pnpm install
@@ -48,18 +51,11 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
           pnpm run build
-          > src/.vitepress/dist/.nojekyll
-
-      - name: 修复目录权限
-        run: |
-          chmod -c -R +rX "src/.vitepress/dist/" | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
       
       - name: 上传文档
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "src/.vitepress/dist/"
+          path: "src/.vitepress/dist"
 
   deploy:
     environment:

@@ -7,8 +7,6 @@ export default defineConfig({
   lang: "zh-CN",
   lastUpdated: true,
   cleanUrls: true,
-  metaChunk: true,
-  mpa: true,
 
   head: [
     // 站点图标
