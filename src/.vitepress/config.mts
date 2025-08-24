@@ -60,7 +60,7 @@ export default defineConfig({
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "/icons/FAVICON-RAW.png",
+    logo: "/icons/logo-05x.ico",
 
     search: {
       provider: "local",

@@ -30,13 +30,13 @@
 这里的包名使用的是`org.easybangumi.extension.zh.bangumiapi`
 :::
 
-![create-extension-settings](/images/guide/extension/create-extension-settings.png)
+![create-extension-settings](/images/guide/extension/create-extension-settings.webp)
 
 等待Gradle Sync的完成，如果Gradle Sync没有正常开始，请手动进行。
 
 采用默认的Android视图，这是项目结构：
 
-![create-path](/images/guide/extension/create-path.png)
+![create-path](/images/guide/extension/create-path.webp)
 
 ### 修改 settings.gradle.kts
 
@@ -134,7 +134,7 @@ dependencies {
 
 下载番组计划的LOGO，将LOGO文件移动到drawable下，如果希望应用程序的LOGO也是自定义的话可以修改`AndroidManifest.xml`。
 
-假如logo文件是`icon.png`，那么就将第六行修改为`@drawable/icon`。
+假如logo文件是`icon.webp`，那么就将第六行修改为`@drawable/icon`。
 
 ::: warning
 如果使用JPEG图片的话可能会导致一些不可意料的问题，推荐使用的图片格式有PNG和WebP。
@@ -367,13 +367,13 @@ class BangumiApiPageComponent(source: BangumiApiSource): ComponentWrapper(source
 
 效果展示
 
-![bangumiapi-calendar-success](/images/guide/extension/bangumiapi-calendar-success.jpg)
+![bangumiapi-calendar-success](/images/guide/extension/bangumiapi-calendar-success.webp)
 
 ### 创建详细信息组件 DetailedComponent
 
 详细信息组件负责番剧卡片点进二级页面的内容，具体是以下的内容：
 
-![get-detailed](/images/guide/extension/get-detailed.png)
+![get-detailed](/images/guide/extension/get-detailed.webp)
 
 分别是番剧标题、标签、封面图、描述信息和播放列表，由于BangumiAPI不提供播放播放服务，播放列表一律返回空，在实际情况中还应该区分播放线路使用。
 
@@ -454,7 +454,7 @@ private fun getDetailByID(id: String): Cartoon {
 
 于是就可以获取番剧的详情信息了（尽管不能播放）
 
-![get-detail-self](/images/guide/extension/get-detail-self.png)
+![get-detail-self](/images/guide/extension/get-detail-self.webp)
 
 ### 创建搜索组件 SearchComponent
 
@@ -509,4 +509,4 @@ class BangumiApiSearchComponent(source: BangumiApiSource) : ComponentWrapper(sou
 
 效果展示
 
-![search](/images/guide/extension/search.png)
+![search](/images/guide/extension/search.webp)

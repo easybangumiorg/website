@@ -199,7 +199,7 @@ class PlayerInfo(
 
 纯纯看番的首页为二级结构，分为一级 Tab（MainTab）和二级 Tab（SubTab），同时支持封面版和文字版首页：
 
-| <img src="/images/guide/extension-js/2.jpg" width="400"/> | <img src="/images/guide/extension-js/1.jpg" width="400"/>   |
+| <img src="/images/guide/extension-js/2.webp" width="400"/> | <img src="/images/guide/extension-js/1.webp" width="400"/>   |
 |:---------------------------------:|:----------------------------------:|
 
 
@@ -336,7 +336,7 @@ function DetailedComponent_getDetailed(summary) {
 }
 ```
 
-| <img src="/images/guide/extension-js/3.jpg" width="400"/> | <img src="/images/guide/extension-js/4.jpg" width="400"/>   |
+| <img src="/images/guide/extension-js/3.webp" width="400"/> | <img src="/images/guide/extension-js/4.webp" width="400"/>   |
 |:---------------------------------:|:----------------------------------:|
 
 ## 获取播放地址
@@ -361,7 +361,7 @@ function PlayComponent_getPlayInfo(summary, playLine, episode) {
 
 纯纯看番支持番源自定义自己的配置页，支持输入配置，选择配置和开关配置
 
-| <img src="/images/guide/extension-js/5.jpg" width="400"/> | 
+| <img src="/images/guide/extension-js/5.webp" width="400"/> | 
 |:---------------------------------:|
 
 ```JavaScript

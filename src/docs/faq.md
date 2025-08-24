@@ -36,7 +36,7 @@
 
 ~~附上一张自评的摸鱼图：~~
 
-![fish](/images/fish.jpg)
+![fish](/images/fish.webp)
 
 ~~好消息是何言就要回来了~~
 
