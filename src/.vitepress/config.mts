@@ -64,7 +64,7 @@ export default defineConfig({
   // 主题配置
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "/icons/logo-05x.ico",
+    logo: "/icons/logo-025x.webp",
 
     search: {
       provider: "local",

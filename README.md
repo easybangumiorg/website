@@ -1,6 +1,6 @@
 <div>
 	<p align="center">
-		<img src="./src/.vuepress/public/icons/logo.ico" height="100px">
+		<img src="./src/public/icons/logo-025x.webp" height="100px">
 	</p>
 	<h1 align="center">EasyBangumi website</h1>
 </div>
