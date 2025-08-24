@@ -11,7 +11,7 @@ sidebar: false
 # 下载
 
 ::: tip
-[stars](https://github.com/easybangumiorg/EasyBangumi) 可以帮助开发者加快新功能的开发。
+如果喜欢这个项目，请帮我们点击一个🌟[star](https://github.com/easybangumiorg/EasyBangumi) ，非常感谢！
 :::
 
 希望您能够享受这个app。
@@ -20,7 +20,7 @@ sidebar: false
 
 在一般情况下应当选择此渠道下载，更新最快，如果无法访问也可以直接跳转到[GitHub Release](https://github.com/easybangumiorg/EasyBangumi/releases/latest)。
 
-<DownloadButtons/>
+<DownloadButtons>如果你看到这一行字，说明Ayala又偷懒了</DownloadButtons>
 
 <WhatsNew/>
 

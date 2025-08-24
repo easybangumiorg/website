@@ -6,13 +6,17 @@
 
 以[Bangumi API](https://bangumi.github.io/api/)为例开发一个纯纯看番插件项目，由于纯纯看番的插件系统比较灵活，这里仅通过Bangumi API实现番剧的更新日历、查找、信息展示。
 
-在一切开始之前，建议使用[自己构建](/guide/contribution/noumenon.md)的纯纯看番，这样就可以在Android Studio中对本体和插件进行调试。
+在一切开始之前，建议使用[自己构建](/docs/contribution)的纯纯看番，这样就可以在Android Studio中对本体和插件进行调试。
 
 ::: warning 注意
 这篇教程并不涉及番剧的解析、播放等操作
 
 本示例代码已开源: [easybangumiorg/Extension-example-bangumiapi](https://github.com/easybangumiorg/Extension-example-bangumiapi)
 :::
+
+## 目录
+
+[[toc]]
 
 ## 初始化项目
 

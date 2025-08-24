@@ -41,10 +41,10 @@ versionCode|版本号，数值类型，用于判断是否有新版本|
 |libVersion|库版本，与纯纯看番版本引擎对应，用于引导用户升级纯纯看番或升级番源|
 |cover|展示图标，一般为 url  |
 
-### 实体
+## 实体
 
 
-#### CartoonSummary
+### CartoonSummary
 
 确定一部番剧的最小单位，一般作为获取番剧数据的参数
 
@@ -57,7 +57,7 @@ data class CartoonSummary(
 
 
 
-#### CartoonCover
+### CartoonCover
 
 番剧封面，一般在首页和搜索中展示
 
@@ -87,7 +87,7 @@ var cover = makeCartoonCover({
 
 ```
 
-#### Cartoon
+### Cartoon
 
 ```Kotlin
 interface Cartoon : Serializable {
@@ -151,7 +151,7 @@ var cartoon = makeCartoon({
 ```
 
 
-#### PlayLine
+### PlayLine
 
 ```Kotlin
 class PlayLine(
@@ -161,7 +161,7 @@ class PlayLine(
 )
 ```
 
-#### Episode
+### Episode
 
 ```Kotlin
 open class Episode(
@@ -171,7 +171,7 @@ open class Episode(
 )
 ```
 
-#### PlayerInfo
+### PlayerInfo
 
 ```Kotlin
 class PlayerInfo(
@@ -193,7 +193,7 @@ class PlayerInfo(
 }
 ```
 
-### 首页
+## 首页
 
 
 
@@ -298,7 +298,7 @@ function PageComponent_getSubTabs(mainTab) {
 :::
 
 
-### 搜索
+## 搜索
 
 
 ```JavaScript
@@ -319,7 +319,7 @@ function SearchComponent_search(page, keyword) {
 }
 ```
 
-### 详情和播放列表
+## 详情和播放列表
 
 ```JavaScript
 
@@ -339,7 +339,7 @@ function DetailedComponent_getDetailed(summary) {
 | <img src="/images/guide/extension-js/3.jpg" width="400"/> | <img src="/images/guide/extension-js/4.jpg" width="400"/>   |
 |:---------------------------------:|:----------------------------------:|
 
-### 获取播放地址
+## 获取播放地址
 
 
 ```JavaScript
@@ -357,7 +357,7 @@ function PlayComponent_getPlayInfo(summary, playLine, episode) {
 }
 ```
 
-### 番源配置
+## 番源配置
 
 纯纯看番支持番源自定义自己的配置页，支持输入配置，选择配置和开关配置
 

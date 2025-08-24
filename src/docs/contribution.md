@@ -1,3 +1,7 @@
+---
+editLink: true
+---
+
 # 构建
 
 ::: tip

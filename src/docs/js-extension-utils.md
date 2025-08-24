@@ -35,7 +35,7 @@ Log;
 
 数据持久化存储，可以存取自定义数据与获取番源配置制定的配置：
 
-```Korlin
+```kotlin
 interface PreferenceHelper {
 
     /**

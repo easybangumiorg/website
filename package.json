@@ -1,32 +1,19 @@
 {
-  "name": "easybangumi.org",
+  "name": "website-next",
   "version": "1.0.0",
-  "description": "official website and github profiles for easybangumi app",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "vuepress build src",
-    "clean-dev": "vuepress dev src --clean-cache",
-    "clean-package": "yarn cache clean --force"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "preview": "vitepress preview src"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/easybangumiorg/.github.git"
-  },
-  "license": "MPL-2.0",
-  "private": true,
-  "bugs": {
-    "url": "https://github.com/easybangumiorg/.github/issues"
-  },
-  "homepage": "https://github.com/easybangumiorg/.github#readme",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0+sha512.486ebc259d3e999a4e8691ce03b5cac4a71cbeca39372a9b762cb500cfdf0873e2cb16abe3d951b1ee2cf012503f027b98b6584e4df22524e0c7450d9ec7aa7b",
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "^2.0.0-rc.37",
-    "@vuepress/plugin-search": "^2.0.0-rc.37",
-    "vuepress": "2.0.0-rc.13",
-    "vuepress-theme-reco": "2.0.0-rc.16"
-  },
-  "dependencies": {
-    "marked": "^13.0.2",
-    "moment": "^2.29.4",
-    "vuex": "^4.0.2"
+    "vitepress": "2.0.0-alpha.12"
   }
 }

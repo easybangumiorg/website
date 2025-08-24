@@ -36,7 +36,7 @@
 ### 2. APK 直接安装导入
 
 纯纯看番社区 APK 仓库，收录爱好者自行维护的番源：（需科学上网）
-[https://github.com/easybangumiorg/CommunityExtension/releases]([https://github.com/easybangumiorg/CommunityExtension/releases)
+[https://github.com/easybangumiorg/CommunityExtension/releases](https://github.com/easybangumiorg/CommunityExtension/releases)
 
 1. 下载 APK 后直接打开安装（该番源没有图标）
 

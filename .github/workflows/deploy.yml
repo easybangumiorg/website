@@ -30,31 +30,30 @@ jobs:
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: yarn
+          node-version: 22
+          cache: pnpm
 
       - name: 安装依赖
         run: |-
-          yarn config set ignore-engines true
-          yarn install --frozen-lockfile
+          pnpm install --frozen-lockfile
 
       - name: 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
-          yarn run build
-          > src/.vuepress/dist/.nojekyll
+          pnpm run build
+          > src/.vitepress/dist/.nojekyll
 
       - name: 修复目录权限
         run: |
-          chmod -c -R +rX "src/.vuepress/dist/" | while read line; do
+          chmod -c -R +rX "src/.vitepress/dist/" | while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
       
       - name: 上传文档
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "src/.vuepress/dist/"
+          path: "src/.vitepress/dist/"
 
   deploy:
     environment:

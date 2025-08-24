@@ -1,32 +1,15 @@
-# OS generated files #
-######################
+*.log
+*.tgz
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Node
-node_modules/
-npm-debug.log
-
-# Compiled site
-src/.vuepress/dist/
-
-# Ignore Visual Studio Code files
-*.code-workspace
-.vscode/launch.json
-
-# Ignore theme_eject folder
-theme_eject/
-
-# vuepress2
-.cache
+.idea
 .temp
-
-# yarn
-yarn-error.log
-
-# Ignore temp code
+.vite_opt_cache
+.vscode
+dist
+cache
+temp
+examples-temp
+node_modules
+pnpm-global
+TODOs.md
+*.timestamp-*.mjs
