@@ -32,7 +32,10 @@ export default defineConfig({
     // Google Analytics
     [
       "script",
-      { async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-9CF0ZQPB32" },
+      {
+        async: "",
+        src: "https://www.googletagmanager.com/gtag/js?id=G-9CF0ZQPB32",
+      },
     ],
     [
       "script",
@@ -58,6 +61,7 @@ export default defineConfig({
     ],
   ],
 
+  // 主题配置
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/icons/logo-05x.ico",

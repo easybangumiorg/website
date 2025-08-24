@@ -2,6 +2,13 @@
 
 ## 介绍
 
+<div style="display: flex; gap: 6px; flex-wrap: wrap;">
+  <img alt="release" src="https://img.shields.io/github/v/release/easybangumiorg/EasyBangumi" />
+  <img alt="license" src="https://img.shields.io/github/license/easybangumiorg/EasyBangumi" />
+  <img alt="downloads" src="https://img.shields.io/github/downloads/easybangumiorg/EasyBangumi/total" />
+  <img alt="issues" src="https://img.shields.io/github/issues/easybangumiorg/EasyBangumi" />
+</div>
+
 纯纯看番具有番剧搜索、番剧收藏、番剧播放、番剧下载、历史记录、投屏等功能，同时支持多番剧源。
 
 ## 导入番源
