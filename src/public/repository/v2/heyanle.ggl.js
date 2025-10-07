@@ -1,9 +1,9 @@
 // @key heyanle.ggl
 // @label GiriGiriLove
-// @versionName 1.0
-// @versionCode 2
+// @versionName 1.1
+// @versionCode 3
 // @libVersion 12
-// @cover https://anime.girigirilove.com/upload/site/20231121-1/fdd2694db66628a9deadd86e50aedd43.png
+// @cover https://bgm.girigirilove.com/upload/site/20231121-1/fdd2694db66628a9deadd86e50aedd43.png
 
 // Inject
 var networkHelper = Inject_NetworkHelper;
@@ -13,7 +13,7 @@ var okhttpHelper = Inject_OkhttpHelper;
 // Hook PreferenceComponent ========================================
 function PreferenceComponent_getPreference() {
     var res = new ArrayList();
-    var host = new SourcePreference.Edit("网页", "Host", "https://anime.girigirilove.com");
+    var host = new SourcePreference.Edit("网页", "HostV2", "https://bgm.girigirilove.com");
     var playerUrl = new SourcePreference.Edit("播放器网页正则", "PlayerReg", "https://m3u8.girigirilove.com/addons/aplyer/atom.php?.*");
     var timeout = new SourcePreference.Edit("超时时间", "Timeout", "10000");
     res.add(host);
@@ -41,7 +41,7 @@ function PageComponent_getContent(mainTab, subTab, key) {
 //    var doc = getMainHomeDocument();
     if (mainTab.label == "日番") {
         var url = "/show/2--------" + (key+1) + "---/";
-        var u = SourceUtils.urlParser(preferenceHelper.get("Host", "https://anime.girigirilove.com"), url);
+        var u = SourceUtils.urlParser(getRootUrl(), url);
         var res = getContent(u);
         if (res.size() == 0) {
             return new Pair(null, new ArrayList());
@@ -49,7 +49,7 @@ function PageComponent_getContent(mainTab, subTab, key) {
         return new Pair(key + 1, res);
     } else if (mainTab.label == "美番") {
         var url = "/show/3--------" + (key+1) + "---/";
-        var u = SourceUtils.urlParser(preferenceHelper.get("Host", "https://anime.girigirilove.com"), url);
+        var u = SourceUtils.urlParser(getRootUrl(), url);
         var res = getContent(u);
         if (res.size() == 0) {
             return new Pair(null, new ArrayList());
@@ -57,7 +57,7 @@ function PageComponent_getContent(mainTab, subTab, key) {
         return new Pair(key + 1, res);
     } else if (mainTab.label == "剧场版") {
         var url = "/show/21--------" + (key+1) + "---/";
-        var u = SourceUtils.urlParser(preferenceHelper.get("Host", "https://anime.girigirilove.com"), url);
+        var u = SourceUtils.urlParser(getRootUrl(), url);
         var res = getContent(u);
         if (res.size() == 0) {
             return new Pair(null, new ArrayList());
@@ -83,7 +83,7 @@ function getContent(url) {
         if (img != null) {
             coverUrl = img.attr("data-src");
         }
-        coverUrl = SourceUtils.urlParser(preferenceHelper.get("Host", "https://anime.girigirilove.com"), coverUrl);
+        coverUrl = SourceUtils.urlParser(getRootUrl(), coverUrl);
         Log.i("GiriGiriLove", "coverUrl: " + coverUrl);
 
         var intro = it.select("span .public-list-prb").first();
@@ -95,7 +95,7 @@ function getContent(url) {
             makeCartoonCover({
                id: id,
                source: source.key,
-               url: SourceUtils.urlParser(preferenceHelper.get("Host", "https://anime.girigirilove.com"), uu),
+               url: SourceUtils.urlParser(getRootUrl(), uu),
                title: it.child(1).child(0).text(),
                intro: introText,
                cover: coverUrl,
@@ -196,7 +196,7 @@ function playline(doc, summary) {
     )
     var doc = getDoc(url);
     var res = new ArrayList();
-    var elements = doc.select("div div.public-list-box.search-box");
+    var elements = doc.select("div.vod-detail.search-list div.overflow");
     for (var i = 0; i < elements.size(); i++) {
         var it = elements.get(i);
         var uu = it.child(1).child(0).attr("href")
@@ -211,7 +211,8 @@ function playline(doc, summary) {
         if (cover.startsWith("//")) {
             cover = "http:${cover}"
         }
-        var titleEle = it.select("div.thumb-content div.thumb-txt").first();
+        var detailInfo = it.select("div.detail-info").first();
+        var titleEle = detailInfo.select("h3.slide-info-title").first();
         var title = "";
         if (titleEle != null) {
             title = titleEle.text();
@@ -301,6 +302,7 @@ function PlayComponent_getPlayInfo(summary, playLine, episode) {
 // main
 function getDoc(url) {
     var u = SourceUtils.urlParser(getRootUrl(), url);
+    Log.i("GiriGiriLove", "getDocFrom: " + url);
     var req = okhttpHelper.cloudflareWebViewClient.newCall(
         OkhttpUtils.get(u)
     );
@@ -311,5 +313,5 @@ function getDoc(url) {
 }
 
 function getRootUrl() {
-    return preferenceHelper.get("Host", "https://anime.girigirilove.com");
+    return preferenceHelper.get("HostV2", "https://bgm.girigirilove.com");
 }
