@@ -1,7 +1,7 @@
 // @key jisoft.omofun
 // @label oMo
-// @versionName 1.0
-// @versionCode 1
+// @versionName 1.1
+// @versionCode 2
 // @libVersion 14
 // @cover https://omofun.link/upload/mxprocms/20230707-1/49f4b8a7fd5cbf77ffcfa7a52e755675.gif
 
