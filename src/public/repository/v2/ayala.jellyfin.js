@@ -1,7 +1,7 @@
 // @key ayala.jellyfin
 // @label Easy Jellyfin Beta
-// @versionName 1.6
-// @versionCode 7
+// @versionName 1.7
+// @versionCode 8
 // @libVersion 11
 // @cover https://jellyfin.org/images/favicon.ico
 
@@ -217,8 +217,11 @@ function PageComponent_getContent(mainTab, subTab, page) {
 }
 
 // 项目代码开始 ========================================
+
+// issue: 暂时还不知道JS的完全等于===运算在Rhino中是否有用
+
 var default_preference = { // 默认设置
-    url: "https://example.com",
+    url: "",
     apikey: "请输入你的API密钥",
     userid: "请输入你的用户ID",
     maxbitrate: "217482430",
@@ -370,7 +373,9 @@ plugin.onBeforeMainTab(() => {
         })
     } catch (error) {
         plugin.log.stackTrace("Jellyfin", error)
-        stringHelper.toast("Jellyfin连接失败")
+        if (preferenceHelper.get("ayala.sbr.url", default_preference.url) != default_preference.url) {
+            stringHelper.toast("Jellyfin连接失败")
+        }
     }
 })
 
