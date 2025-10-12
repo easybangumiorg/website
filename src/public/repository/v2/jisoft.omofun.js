@@ -1,8 +1,8 @@
 // @key jisoft.omofun
 // @label oMo
-// @versionName 1.1
-// @versionCode 2
-// @libVersion 14
+// @versionName 1.2
+// @versionCode 3
+// @libVersion 12
 // @cover https://omofun.link/upload/mxprocms/20230707-1/49f4b8a7fd5cbf77ffcfa7a52e755675.gif
 
 // Inject
@@ -24,10 +24,11 @@ function PreferenceComponent_getPreference() {
 
 function PageComponent_getMainTabs() {
     var res = new ArrayList();
-    res.add(new MainTab("电影", MainTab.MAIN_TAB_WITH_COVER));
-    res.add(new MainTab("连续剧", MainTab.MAIN_TAB_WITH_COVER));
     res.add(new MainTab("动漫", MainTab.MAIN_TAB_WITH_COVER));
-    res.add(new MainTab("里番", MainTab.MAIN_TAB_WITH_COVER));
+//    res.add(new MainTab("电影", MainTab.MAIN_TAB_WITH_COVER));
+    res.add(new MainTab("连续剧", MainTab.MAIN_TAB_WITH_COVER));
+
+//    res.add(new MainTab("里番", MainTab.MAIN_TAB_WITH_COVER));
     return res;
 }
 
