@@ -1,7 +1,7 @@
 // @key heyanle.ggl
 // @label GiriGiriLove
-// @versionName 1.2
-// @versionCode 4
+// @versionName 1.3
+// @versionCode 5
 // @libVersion 12
 // @cover https://bgm.girigirilove.com/upload/site/20231121-1/fdd2694db66628a9deadd86e50aedd43.png
 
@@ -196,10 +196,14 @@ function playline(doc, summary) {
     )
     var doc = getDoc(url);
     var res = new ArrayList();
-    var elements = doc.select("div.box-width div.row-9 div div.search-box.public-list-box");
+    var elements = doc.select("div.box-width div.row div.search-list.vod-detail");
     for (var i = 0; i < elements.size(); i++) {
         var it = elements.get(i);
-        var uu = it.child(1).child(0).attr("href")
+        var content = it.child(0);
+        if (content == null) {
+            continue;
+        }
+        var uu = content.child(1).child(0).attr("href")
         var id = uu.subSequence(1, uu.length() - 1).toString()
 
         var imgEle = it.select("img.gen-movie-img").first();
@@ -211,8 +215,8 @@ function playline(doc, summary) {
         if (cover.startsWith("//")) {
             cover = "http:${cover}"
         }
-        var detailInfo = it.select("div.right").first();
-        var titleEle = detailInfo.select("div.thumb-content div.thumb-txt").first();
+        var detailInfo = it.select("div.detail-info").first();
+        var titleEle = detailInfo.select("h3.slide-info-title hide").first();
         var title = "";
         if (titleEle != null) {
             title = titleEle.text();
