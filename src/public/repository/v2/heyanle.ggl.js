@@ -1,7 +1,7 @@
 // @key heyanle.ggl
 // @label GiriGiriLove
-// @versionName 1.3
-// @versionCode 5
+// @versionName 1.4
+// @versionCode 6
 // @libVersion 12
 // @cover https://bgm.girigirilove.com/upload/site/20231121-1/fdd2694db66628a9deadd86e50aedd43.png
 
@@ -215,8 +215,8 @@ function playline(doc, summary) {
         if (cover.startsWith("//")) {
             cover = "http:${cover}"
         }
-        var detailInfo = it.select("div.detail-info").first();
-        var titleEle = detailInfo.select("h3.slide-info-title hide").first();
+        var detailInfo = content.select("div.detail-info").first();
+        var titleEle = detailInfo.select("h3.slide-info-title").first();
         var title = "";
         if (titleEle != null) {
             title = titleEle.text();
