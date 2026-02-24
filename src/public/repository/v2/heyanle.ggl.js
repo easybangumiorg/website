@@ -1,5 +1,5 @@
-// @key heyanle.ggl.test
-// @label GiriGiriLoveTest
+// @key heyanle.ggl
+// @label GiriGiriLove
 // @versionName 1.5
 // @versionCode 7
 // @libVersion 13
