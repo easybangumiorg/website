@@ -93,12 +93,29 @@ export default defineConfig({
         ],
       },
       {
+        text: "JS 扩展开发指南",
+        items: [
+          { text: "Skill 说明", link: "/docs/easybangumi-js-extension/SKILL" },
+          { text: "Agent 任务指南", link: "/docs/easybangumi-js-extension/AGENT_TASK_GUIDE" },
+        ],
+      },
+      {
+        text: "JS 扩展参考",
+        items: [
+          { text: "API 参考", link: "/docs/easybangumi-js-extension/references/api-reference" },
+          { text: "组件", link: "/docs/easybangumi-js-extension/references/components" },
+          { text: "实体", link: "/docs/easybangumi-js-extension/references/entities" },
+          { text: "最佳实践", link: "/docs/easybangumi-js-extension/references/best-practices" },
+          { text: "常见问题", link: "/docs/easybangumi-js-extension/references/faq" },
+        ],
+      },
+      {
         text: "开发",
         items: [
           { text: "构建", link: "/docs/contribution" },
           { text: "安卓扩展例程", link: "/docs/native-extension-example" },
-          { text: "JS扩展例程", link: "/docs/js-extension-example" },
-          { text: "JS扩展 API参考", link: "/docs/js-extension-utils" },
+          { text: "JS 扩展例程", link: "/docs/js-extension-example" },
+          { text: "JS 扩展 API 参考", link: "/docs/js-extension-utils" },
         ],
       },
     ],
