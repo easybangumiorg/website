@@ -15,7 +15,7 @@ var webProxyProvider = Inject_WebProxyProvider;
 function PreferenceComponent_getPreference() {
     var res = new ArrayList();
     var host = new SourcePreference.Edit("网页", "HostV2", "https://bgm.girigirilove.com");
-    var playerUrl = new SourcePreference.Edit("播放器网页正则", "PlayerReg", "https://m3u8.girigirilove.com/addons/aplyer/atom.php?.*");
+    var playerUrl = new SourcePreference.Edit("播放器网页正则", "PlayerReg", "https://.*.girigirilove..*/zijian/.*");
     var timeout = new SourcePreference.Edit("超时时间", "Timeout", "10000");
     res.add(host);
     res.add(playerUrl);
@@ -281,7 +281,7 @@ function PlayComponent_getPlayInfo(summary, playLine, episode) {
     var url = JSSourceUtils.urlParser(getRootUrl(), "play" + urlPath + "/");
     var strategy = new WebViewHelperV2.RenderedStrategy(
         url,
-        preferenceHelper.get("PlayerReg", "https://m3u8.girigirilove.com/addons/aplyer/atom.php?.*"),
+        preferenceHelper.get("PlayerReg", "https://.*.girigirilove..*/zijian/.*"),
         "utf-8",
         networkHelper.defaultLinuxUA,
         null,
