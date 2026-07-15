@@ -2,13 +2,14 @@
 // @label 稀饭动漫
 // @versionName 1.1
 // @versionCode 2
-// @libVersion 12
+// @libVersion 15
 // @cover https://dm.xifanacg.com/template/dsn2/static/img/fav.png
 
 // Inject
 var networkHelper = Inject_NetworkHelper;
 var preferenceHelper = Inject_PreferenceHelper;
 var webViewHelperV2 = Inject_WebViewHelperV2;
+var renderHelper = Inject_RenderHelper;
 var okhttpHelper = Inject_OkhttpHelper;
 // Hook PreferenceComponent ========================================
 function PreferenceComponent_getPreference() {
@@ -237,57 +238,30 @@ function playline(doc, summary) {
 function PlayComponent_getPlayInfo(summary, playLine, episode) {
 
     var url = JSSourceUtils.urlParser(getRootUrl(), "/watch/" + summary.id + "/" + playLine.id + "/" + episode.id + ".html");
-    var strategy = new WebViewHelperV2.RenderedStrategy(
+    return renderVideo(url, Long.parseLong(preferenceHelper.get("Timeout", "20000")), false);
+}
+
+function renderVideo(url, timeout, legacy) {
+    var result = renderHelper.renderVideoFromJs(new JsVideoStrategy(
         url,
-        preferenceHelper.get("PlayerReg", "https://player.moedot.net/player/index.php?.*"),
-        "utf-8",
         networkHelper.defaultLinuxUA,
+        new HashMap(),
         null,
-        null,
-        false,
-        Long.parseLong(preferenceHelper.get("Timeout", "20000"))
-    );
-    var result = webViewHelperV2.renderHtmlFromJs(strategy);
-    if (result == null) {
-        throw new ParserException("解析错误 1");
-    }
-    Log.i("result", result);
-    var doc = Jsoup.parse(result.content);
-
-
-    var src = "";
-    var iframe = doc.select("tbody td iframe").first();
-    if (iframe != null) {
-        src = iframe.attr("src")
-    }
-    Log.i("GiriGiriLove", "PlayComponent_getPlayInfo: src: " + src);
+        timeout,
+        legacy
+    ));
     var res = "";
-    var split = src.split("\\?");
-    if (split.length > 0) {
-        var last = split[split.length - 1];
-        var ls = last.split("\\&");
-        for (var i = 0; i < ls.length; i++) {
-            var it = ls[i];
-            if (it.startsWith("url=")) {
-                res = it.subSequence(4, it.length()).toString();
-                break;
-            }
-        }
+    if (result != null) {
+        res = result.url;
     }
-
-    if(res.length == 0) {
-        throw ParserException("url 解析失败")
+    if (res == null || res.length == 0) {
+        throw new ParserException("url 解析失败");
     }
-
     var type = PlayerInfo.DECODE_TYPE_OTHER;
-    if (res.endsWith(".m3u8")) {
+    if (result.isM3u8) {
         type = PlayerInfo.DECODE_TYPE_HLS;
     }
-    return new PlayerInfo(
-        type, res
-    )
-
-
+    return new PlayerInfo(type, res);
 }
 
 

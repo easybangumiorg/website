@@ -2,13 +2,14 @@
 // @label Age动漫
 // @versionName 1.0
 // @versionCode 1
-// @libVersion 13
+// @libVersion 15
 // @cover https://www.agedm.io/favicon.ico
 
 // Inject
 var networkHelper = Inject_NetworkHelper;
 var preferenceHelper = Inject_PreferenceHelper;
 var webViewHelperV2 = Inject_WebViewHelperV2;
+var renderHelper = Inject_RenderHelper;
 var okhttpHelper = Inject_OkhttpHelper;
 var webProxyProvider = Inject_WebProxyProvider;
 // Hook PreferenceComponent ========================================
@@ -289,45 +290,32 @@ function playline(doc, summary) {
 
  // Hook PlayComponent ========================================
 function PlayComponent_getPlayInfo(summary, playLine, episode) {
-       var url = JSSourceUtils.urlParser(getRootUrl(), "/play/" + summary.id + "/" + playLine.id + "/" + episode.id );
-    var webProxy = webProxyProvider.getWebProxy();
-    if (webProxy == null) {
-        throw new ParserException("解析错误 webProxy is null");
-    }
-    webProxy.loadUrl(url, networkHelper.defaultLinuxUA, null, null, true);
-    webProxy.waitingForPageLoaded();
-    webProxy.waitingForResourceLoaded(".*jx\.ejtsyc\.com.*", true, 2000);
-    var m3u8Url = webProxy.waitingForResourceLoaded(".*index\.m3u8", true, 2000);
-    var mp4Url = webProxy.waitingForResourceLoaded(".*\.mp4", true, 2000);
-                
-    var type = PlayerInfo.DECODE_TYPE_OTHER;
-    if(m3u8Url == null && mp4Url == null){ 
-          var  content = webProxy.getContentWithIframe();
-        var doc = Jsoup.parse(content);
-        var videoEle = doc.select("video.art-video").first();
-        if (videoEle != null) {
-             res = videoEle.attr("src");
-        }
-    }
-    if (m3u8Url != null) {
-        res = m3u8Url;
-    } else {
-        res = mp4Url;
-    }
+    var url = JSSourceUtils.urlParser(getRootUrl(), "/play/" + summary.id + "/" + playLine.id + "/" + episode.id );
+    return renderVideo(url, 45000, false);
+}
 
+function renderVideo(url, timeout, legacy) {
+    var result = renderHelper.renderVideoFromJs(new JsVideoStrategy(
+        url,
+        networkHelper.defaultLinuxUA,
+        new HashMap(),
+        null,
+        timeout,
+        legacy
+    ));
+    var res = "";
+    if (result != null) {
+        res = result.url;
+    }
     if (res == null || res.length == 0) {
         throw new ParserException("解析错误，未找到播放地址");
     }
-    if (res.endsWith(".m3u8")) {
+    var type = PlayerInfo.DECODE_TYPE_OTHER;
+    Log.i("AGE", result.isM3u8)
+    if (result.isM3u8) {
         type = PlayerInfo.DECODE_TYPE_HLS;
     }
-
-
-    return new PlayerInfo(
-        type, res
-    )
-
-
+    return new PlayerInfo(type, res);
 }
 
 
