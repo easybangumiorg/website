@@ -1,7 +1,7 @@
 // @key kazumi.9ciyuan
 // @label 9ciyuan
-// @versionName 1.3
-// @versionCode 10300
+// @versionName 1.3.1
+// @versionCode 10301
 // @libVersion 15
 // @cover https://www.jcydm1.com/favicon.ico
 
@@ -30,9 +30,7 @@ function PreferenceComponent_getPreference() {
 }
 
 function PageComponent_getMainTabs() {
-    var res = new ArrayList();
-    res.add(new MainTab("首页推荐", MainTab.MAIN_TAB_WITH_COVER));
-    return res;
+    return new NonLabelMainTab(MainTab.MAIN_TAB_WITH_COVER);
 }
 
 function PageComponent_getSubTabs(mainTab) {

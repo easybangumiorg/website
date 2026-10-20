@@ -1,7 +1,7 @@
 // @key kazumi.mifun
 // @label MiFun
-// @versionName 1.1
-// @versionCode 10100
+// @versionName 1.1.1
+// @versionCode 10101
 // @libVersion 15
 // @cover https://ios.mifun.org/favicon.ico
 
@@ -20,9 +20,7 @@ function PreferenceComponent_getPreference() {
 }
 
 function PageComponent_getMainTabs() {
-    var result = new ArrayList();
-    result.add(new MainTab("首页推荐", MainTab.MAIN_TAB_WITH_COVER));
-    return result;
+    return new NonLabelMainTab(MainTab.MAIN_TAB_WITH_COVER);
 }
 function PageComponent_getSubTabs(mainTab) { return new ArrayList(); }
 function PageComponent_getContent(mainTab, subTab, pageKey) {

@@ -1,12 +1,10 @@
 {"key": "heyanle.age", "url": "https://easybangumi.org/repository/v2/heyanle.age.js", "label": "Age动漫", "versionCode": 1, "versionName": "1.0", "cover": "https://www.agedm.io/favicon.ico"}
-{"key": "heyanle.ggl", "url": "https://easybangumi.org/repository/v2/heyanle.ggl.js", "label": "GiriGiriLove", "versionCode": 7, "versionName": "1.5", "cover": "https://ani.girigirilove.com/upload/site/20231121-1/fdd2694db66628a9deadd86e50aedd43.png"}
 {"key": "heyanle.ggl.beta", "url": "https://easybangumi.org/repository/v2/heyanle.ggl.beta.js", "label": "GiriGiriLove Beta", "versionCode": 1, "versionName": "1.0", "cover": "https://beta.girigirilove.com/brand/icon.png"}
-{"key": "kazumi.7sefun", "url": "https://easybangumi.org/repository/v2/kazumi.7sefun.js", "label": "7sefun", "versionCode": 10200, "versionName": "1.2", "cover": "https://www.7sefun.top/favicon.ico"}
-{"key": "kazumi.9ciyuan", "url": "https://easybangumi.org/repository/v2/kazumi.9ciyuan.js", "label": "9ciyuan", "versionCode": 10300, "versionName": "1.3", "cover": "https://www.jcydm1.com/favicon.ico"}
-{"key": "kazumi.anime7", "url": "https://easybangumi.org/repository/v2/kazumi.anime7.js", "label": "anime7", "versionCode": 10000, "versionName": "1.0", "cover": "https://ani7.b-cdn.net/upload/logo/icon.png"}
-{"key": "kazumi.ant", "url": "https://easybangumi.org/repository/v2/kazumi.ant.js", "label": "ant", "versionCode": 2, "versionName": "0.0.2", "cover": "default"}
-{"key": "kazumi.baimao", "url": "https://easybangumi.org/repository/v2/kazumi.baimao.js", "label": "baimao", "versionCode": 10000, "versionName": "1.0", "cover": "https://www.bmmdm.com/hdst/hm_pic/favicon.ico"}
-{"key": "kazumi.lmm", "url": "https://easybangumi.org/repository/v2/kazumi.lmm.js", "label": "LMM", "versionCode": 20200, "versionName": "2.2", "cover": "https://www.lmm85.com/favicon.ico"}
-{"key": "kazumi.mifun", "url": "https://easybangumi.org/repository/v2/kazumi.mifun.js", "label": "MiFun", "versionCode": 10100, "versionName": "1.1", "cover": "https://ios.mifun.org/favicon.ico"}
-{"key": "kazumi.mxdm", "url": "https://easybangumi.org/repository/v2/kazumi.mxdm.js", "label": "MXdm", "versionCode": 20300, "versionName": "2.3", "cover": "https://www.dcc3.com/favicon.ico"}
+{"key": "kazumi.7sefun", "url": "https://easybangumi.org/repository/v2/kazumi.7sefun.js", "label": "7sefun", "versionCode": 10201, "versionName": "1.2.1", "cover": "https://www.7sefun.top/favicon.ico"}
+{"key": "kazumi.9ciyuan", "url": "https://easybangumi.org/repository/v2/kazumi.9ciyuan.js", "label": "9ciyuan", "versionCode": 10301, "versionName": "1.3.1", "cover": "https://www.jcydm1.com/favicon.ico"}
+{"key": "kazumi.anime7", "url": "https://easybangumi.org/repository/v2/kazumi.anime7.js", "label": "anime7", "versionCode": 10001, "versionName": "1.0.1", "cover": "https://ani7.b-cdn.net/upload/logo/icon.png"}
+{"key": "kazumi.ant", "url": "https://easybangumi.org/repository/v2/kazumi.ant.js", "label": "ant", "versionCode": 3, "versionName": "0.0.3", "cover": "default"}
+{"key": "kazumi.baimao", "url": "https://easybangumi.org/repository/v2/kazumi.baimao.js", "label": "baimao", "versionCode": 10001, "versionName": "1.0.1", "cover": "https://www.bmmdm.com/hdst/hm_pic/favicon.ico"}
+{"key": "kazumi.mifun", "url": "https://easybangumi.org/repository/v2/kazumi.mifun.js", "label": "MiFun", "versionCode": 10101, "versionName": "1.1.1", "cover": "https://ios.mifun.org/favicon.ico"}
+{"key": "kazumi.mxdm", "url": "https://easybangumi.org/repository/v2/kazumi.mxdm.js", "label": "MXdm", "versionCode": 20301, "versionName": "2.3.1", "cover": "https://www.dcc3.com/favicon.ico"}
 {"key": "kazumi.sorani", "url": "https://easybangumi.org/repository/v2/kazumi.sorani.js", "label": "sorani", "versionCode": 10000, "versionName": "1.0", "cover": "https://www.sorani.net/favicon.ico"}

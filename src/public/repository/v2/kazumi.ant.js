@@ -1,7 +1,7 @@
 // @key kazumi.ant
 // @label ant
-// @versionName 0.0.2
-// @versionCode 2
+// @versionName 0.0.3
+// @versionCode 3
 // @libVersion 15
 // @cover default
 
@@ -30,9 +30,7 @@ function PreferenceComponent_getPreference() {
 }
 
 function PageComponent_getMainTabs() {
-    var res = new ArrayList();
-    res.add(new MainTab("首页推荐", MainTab.MAIN_TAB_WITH_COVER));
-    return res;
+    return new NonLabelMainTab(MainTab.MAIN_TAB_WITH_COVER);
 }
 
 function PageComponent_getSubTabs(mainTab) {

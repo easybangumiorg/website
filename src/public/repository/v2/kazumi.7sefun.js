@@ -1,7 +1,7 @@
 // @key kazumi.7sefun
 // @label 7sefun
-// @versionName 1.2
-// @versionCode 10200
+// @versionName 1.2.1
+// @versionCode 10201
 // @libVersion 15
 // @cover https://www.7sefun.top/favicon.ico
 
@@ -30,9 +30,7 @@ function PreferenceComponent_getPreference() {
 }
 
 function PageComponent_getMainTabs() {
-    var res = new ArrayList();
-    res.add(new MainTab("首页推荐", MainTab.MAIN_TAB_WITH_COVER));
-    return res;
+    return new NonLabelMainTab(MainTab.MAIN_TAB_WITH_COVER);
 }
 
 function PageComponent_getSubTabs(mainTab) {
